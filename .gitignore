@@ -1,10 +1,15 @@
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
 
 # Next.js
 .next/
 out/
 build/
+
+# Testing
+coverage/
 
 # Env
 .env*
@@ -30,3 +35,4 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
+next-env.d.ts
