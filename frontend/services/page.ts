@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getServices } from "../../services/api";
+import { getServices } from "./api";
 
 export default function Services() {
   const [services, setServices] = useState([]);
