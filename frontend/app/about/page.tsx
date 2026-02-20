@@ -29,7 +29,7 @@ export default function AboutPage() {
           <div className="overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/40 px-6 py-10 shadow-xl backdrop-blur-sm sm:px-10 sm:py-14">
             <div className="relative">
               {/* Accent line */}
-              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-gradient-to-b from-blue-500 to-blue-700/60" />
+              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-linear-to-b from-blue-500 to-blue-700/60" />
 
               <div className="space-y-8 pl-6 sm:pl-8">
                 <AnimateOnScroll>
@@ -101,7 +101,7 @@ export default function AboutPage() {
                 </p>
                 <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
                   Creative Agency that Help you{" "}
-                  <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                   go Ahead.
               </span>
                 </h2>

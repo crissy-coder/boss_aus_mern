@@ -213,7 +213,7 @@ export default function TimelineSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-white sm:text-3xl xl:text-5xl lg:mb-14">
           Making History In {" "}
-          <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
           Our Industry
           </span>
         </h2>
@@ -233,7 +233,7 @@ export default function TimelineSection() {
                 className="object-cover transition-opacity duration-300"
                 sizes="(max-width: 1024px) 100vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent lg:from-transparent lg:via-transparent lg:to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-zinc-950/40 to-transparent lg:from-transparent lg:via-transparent lg:to-transparent" />
             </div>
 
             {/* Text block */}

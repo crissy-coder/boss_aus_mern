@@ -2,32 +2,52 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
-const DROPDOWN_ITEMS = {
+type DropdownChild = {
+  label: string;
+  href: string;
+};
+
+type DropdownItem = {
+  label: string;
+  href?: string;
+  children?: DropdownChild[];
+};
+
+const DROPDOWN_ITEMS: Record<string, DropdownItem[]> = {
   "About Us": [
-    { label: "Our Story", href: "/about" },
-    { label: "Leadership", href: "/about/leadership" },
-    { label: "Careers", href: "/careers" },
+    { label: "About Us", href: "/about" },
+    { label: "Team", href: "/team" },
   ],
   "Our Services": [
-    { label: "Consulting", href: "/services/consulting" },
-    { label: "Development", href: "/services/development" },
-    { label: "Support", href: "/services/support" },
+    { label: "BPO", href: "/services/bpo" },
+    { label: "Construction", href: "/services/construction" },
+    { label: "Laundromats", href: "/services/laundromats" },
+    { label: "Hotel Motel", href: "/services/hotel-motel" },
   ],
   Global: [
-    { label: "Locations", href: "/global/locations" },
-    { label: "Partners", href: "/global/partners" },
+    { label: "Boss Aus", href: "https://bossusa.com/" },
+    { label: "Boss Container", href: "https://bosscontainerline.com/" },
+    {
+      label: "Hotel",
+      children: [
+        { label: "Cos Moon Bank", href: "https://eminenceonbank.com.au/" },
+        { label: "Arkana Motorinn", href: "https://arkanamotorinn.com.au/" },
+        { label: "Pitts Motorinn", href: "https://www.pittsworthmotorinn.com/" },
+        { label: "High Field Motel", href: "https://highfieldsmotel.com.au/" },
+      ],
+    },
   ],
-} as const;
+};
 
 const NAV_LINKS = [
   { label: "Home", href: "/", hasDropdown: false },
   { label: "About Us", href: "/about", hasDropdown: true },
   { label: "Our Services", href: "/services", hasDropdown: true },
   { label: "Global", href: "/global", hasDropdown: true },
-  { label: "News Building", href: "/news", hasDropdown: false },
+  { label: "News Building", href: "#", hasDropdown: false },
   { label: "Contact Us", href: "/contact", hasDropdown: false },
 ] as const;
 
@@ -71,14 +91,17 @@ function ChevronDown({ className }: { className?: string }) {
 function SearchIcon({
   className,
   light,
+  onClick,
 }: {
   className?: string;
   light?: boolean;
+  onClick?: () => void;
 }) {
   return (
     <button
       type="button"
       aria-label="Search"
+      onClick={onClick}
       className={`rounded-full p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 ${
         light ? "hover:bg-white/10 text-white" : "hover:bg-black/5 text-zinc-600"
       } ${className || ""}`}
@@ -100,11 +123,156 @@ function SearchIcon({
   );
 }
 
+const SEARCH_LINKS = [
+  { label: "BPO Services", href: "/services/bpo" },
+  { label: "Construction", href: "/services/construction" },
+  { label: "Hotel & Motel", href: "/services/hotel-motel" },
+  { label: "Laundromats", href: "/services/laundromats" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Team", href: "/team" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+function SearchModal({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const filteredLinks = query
+    ? SEARCH_LINKS.filter((link) =>
+        link.label.toLowerCase().includes(query.toLowerCase())
+      )
+    : SEARCH_LINKS;
+
+  useEffect(() => {
+    if (isOpen) {
+      inputRef.current?.focus();
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-100 flex items-start justify-center pt-20 sm:pt-32">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <div className="relative w-full max-w-2xl mx-4 animate-fade-up">
+        <div className="overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/95 shadow-2xl backdrop-blur-md">
+          {/* Search Input */}
+          <div className="flex items-center gap-4 border-b border-zinc-800/60 px-5 py-4">
+            <svg
+              className="h-5 w-5 shrink-0 text-zinc-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search pages, services..."
+              className="flex-1 bg-transparent text-white placeholder-zinc-500 outline-none"
+            />
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-lg bg-zinc-800/60 px-2 py-1 text-xs font-medium text-zinc-400 transition-colors hover:bg-zinc-700/60 hover:text-white"
+            >
+              ESC
+            </button>
+          </div>
+
+          {/* Results */}
+          <div className="max-h-80 overflow-y-auto p-2">
+            {filteredLinks.length > 0 ? (
+              <>
+                <p className="px-3 py-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                  {query ? "Results" : "Quick Links"}
+                </p>
+                <ul>
+                  {filteredLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={onClose}
+                        className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm text-zinc-300 transition-colors hover:bg-zinc-800/60 hover:text-white"
+                      >
+                        <svg
+                          className="h-4 w-4 text-zinc-500"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <div className="px-3 py-8 text-center text-sm text-zinc-500">
+                No results found for &quot;{query}&quot;
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-zinc-800/60 px-5 py-3">
+            <p className="text-xs text-zinc-500">
+              Press <span className="rounded bg-zinc-800 px-1.5 py-0.5 font-medium text-zinc-400">Enter</span> to search or <span className="rounded bg-zinc-800 px-1.5 py-0.5 font-medium text-zinc-400">ESC</span> to close
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [mobileExpandedItems, setMobileExpandedItems] = useState<string[]>([]);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -190,23 +358,73 @@ export default function Header() {
                   }`}
                 >
                   <ul
-                    className="min-w-[180px] rounded-lg border border-zinc-200 bg-white py-2 shadow-lg"
+                    className="min-w-[200px] rounded-lg border border-zinc-200 bg-white py-2 shadow-lg"
                     role="menu"
                   >
-                    {(
-                      DROPDOWN_ITEMS[
-                        link.label as keyof typeof DROPDOWN_ITEMS
-                      ] || []
-                    ).map((item) => (
-                      <li key={item.label} role="none">
-                        <Link
-                          href={item.href}
-                          className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
-                          role="menuitem"
-                          onClick={() => setOpenDropdown(null)}
-                        >
-                          {item.label}
-                        </Link>
+                    {(DROPDOWN_ITEMS[link.label] || []).map((item) => (
+                      <li
+                        key={item.label}
+                        role="none"
+                        className="relative"
+                        onMouseEnter={() =>
+                          item.children && setOpenSubmenu(item.label)
+                        }
+                        onMouseLeave={() => setOpenSubmenu(null)}
+                      >
+                        {item.children ? (
+                          <>
+                            <button
+                              type="button"
+                              className="flex w-full items-center justify-between px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                            >
+                              {item.label}
+                              <ChevronDown className="-rotate-90 ml-2" />
+                            </button>
+                            {/* Nested submenu */}
+                            <div
+                              className={`absolute left-full top-0 pl-1 transition-all duration-200 ${
+                                openSubmenu === item.label
+                                  ? "visible opacity-100 translate-x-0"
+                                  : "invisible opacity-0 -translate-x-2"
+                              }`}
+                            >
+                              <ul className="min-w-[180px] rounded-lg border border-zinc-200 bg-white py-2 shadow-lg">
+                                {item.children.map((child) => (
+                                  <li key={child.label} role="none">
+                                    <Link
+                                      href={child.href}
+                                      className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                                      role="menuitem"
+                                      onClick={() => {
+                                        setOpenDropdown(null);
+                                        setOpenSubmenu(null);
+                                      }}
+                                      target={
+                                        child.href.startsWith("http")
+                                          ? "_blank"
+                                          : undefined
+                                      }
+                                    >
+                                      {child.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </>
+                        ) : (
+                          <Link
+                            href={item.href || "#"}
+                            className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                            role="menuitem"
+                            onClick={() => setOpenDropdown(null)}
+                            target={
+                              item.href?.startsWith("http") ? "_blank" : undefined
+                            }
+                          >
+                            {item.label}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -218,12 +436,12 @@ export default function Header() {
 
         {/* Search (Desktop) */}
         <div className="hidden lg:flex shrink-0 items-center">
-          <SearchIcon light={light} />
+          <SearchIcon light={light} onClick={() => setSearchOpen(true)} />
         </div>
 
         {/* Mobile: Hamburger + Search */}
         <div className="flex lg:hidden shrink-0 items-center gap-2">
-          <SearchIcon light={light} />
+          <SearchIcon light={light} onClick={() => setSearchOpen(true)} />
           <button
             type="button"
             aria-label="Toggle menu"
@@ -287,19 +505,63 @@ export default function Header() {
                 </Link>
                 {link.hasDropdown && link.label in DROPDOWN_ITEMS && (
                   <ul className="ml-4 mt-1 space-y-1 border-l-2 border-zinc-200 pl-4">
-                    {(
-                      DROPDOWN_ITEMS[
-                        link.label as keyof typeof DROPDOWN_ITEMS
-                      ] || []
-                    ).map((item) => (
+                    {(DROPDOWN_ITEMS[link.label] || []).map((item) => (
                       <li key={item.label}>
-                        <Link
-                          href={item.href}
-                          className="block py-2 text-sm text-zinc-500 hover:text-zinc-900"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
+                        {item.children ? (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setMobileExpandedItems((prev) =>
+                                  prev.includes(item.label)
+                                    ? prev.filter((i) => i !== item.label)
+                                    : [...prev, item.label]
+                                )
+                              }
+                              className="flex w-full items-center justify-between py-2 text-sm text-zinc-500 hover:text-zinc-900"
+                            >
+                              {item.label}
+                              <ChevronDown
+                                className={`transition-transform duration-200 ${
+                                  mobileExpandedItems.includes(item.label)
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
+                            </button>
+                            {mobileExpandedItems.includes(item.label) && (
+                              <ul className="ml-4 space-y-1 border-l-2 border-zinc-100 pl-4">
+                                {item.children.map((child) => (
+                                  <li key={child.label}>
+                                    <Link
+                                      href={child.href}
+                                      className="block py-2 text-sm text-zinc-400 hover:text-zinc-900"
+                                      onClick={() => setMobileMenuOpen(false)}
+                                      target={
+                                        child.href.startsWith("http")
+                                          ? "_blank"
+                                          : undefined
+                                      }
+                                    >
+                                      {child.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </>
+                        ) : (
+                          <Link
+                            href={item.href || "#"}
+                            className="block py-2 text-sm text-zinc-500 hover:text-zinc-900"
+                            onClick={() => setMobileMenuOpen(false)}
+                            target={
+                              item.href?.startsWith("http") ? "_blank" : undefined
+                            }
+                          >
+                            {item.label}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -309,6 +571,9 @@ export default function Header() {
           </ul>
         </nav>
       </div>
+
+      {/* Search Modal */}
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
