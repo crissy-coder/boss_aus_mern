@@ -91,9 +91,9 @@ export default function TeamPage() {
   };
 
   return (
-    <div className="page-pattern min-h-screen bg-zinc-950">
+    <div className="page-pattern min-h-screen bg-theme-muted">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-zinc-800/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-800/20 blur-3xl" />
         {/* <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-800/30 blur-3xl" /> */}
@@ -132,7 +132,7 @@ export default function TeamPage() {
             {/* col-8: Slider */}
             <div className="lg:col-span-8">
               <AnimateOnScroll>
-                <div className="relative overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/40 shadow-xl backdrop-blur-sm">
+                <div className="relative overflow-hidden rounded-2xl border border-zinc-800/60 bg-theme-card shadow-xl backdrop-blur-sm">
                   <div
                     className="flex transition-transform duration-500 ease-out"
                     style={{ transform: `translateX(-${index * 100}%)` }}
@@ -161,10 +161,10 @@ export default function TeamPage() {
                             <p className="text-sm font-medium uppercase tracking-wider text-blue-500">
                               {member.role}
                             </p>
-                            <h2 className="mt-1 text-2xl font-bold text-white sm:text-3xl">
+                            <h2 className="mt-1 text-2xl font-bold text-theme-heading sm:text-3xl">
                               {member.name}
                             </h2>
-                            <p className="mt-4 text-zinc-400 leading-relaxed">
+                            <p className="mt-4 text-theme-heading leading-relaxed">
                               {member.bio}
                             </p>
                             <Link
@@ -180,11 +180,11 @@ export default function TeamPage() {
                   </div>
 
                   {/* Slider controls */}
-                  <div className="flex items-center justify-between border-t border-zinc-800/60 px-6 py-4 sm:px-10">
+                  <div className="flex items-center justify-between px-6 py-4 sm:px-10">
                     <button
                       type="button"
                       onClick={goPrev}
-                      className="rounded-lg border border-zinc-700/80 bg-zinc-800/60 px-4 py-2 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-700/60 hover:text-white"
+                      className="rounded-lg border border-zinc-700/80 bg-theme-card px-4 py-2 text-sm font-medium text-theme-heading transition-colors hover:bg-zinc-700/60 hover:text-white"
                       aria-label="Previous team member"
                     >
                       Previous
@@ -207,7 +207,7 @@ export default function TeamPage() {
                     <button
                       type="button"
                       onClick={goNext}
-                      className="rounded-lg border border-zinc-700/80 bg-zinc-800/60 px-4 py-2 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-700/60 hover:text-white"
+                      className="rounded-lg border border-zinc-700/80 bg-theme-card px-4 py-2 text-sm font-medium text-theme-heading transition-colors hover:bg-zinc-700/60 hover:text-white"
                       aria-label="Next team member"
                     >
                       Next
@@ -224,10 +224,10 @@ export default function TeamPage() {
         {/* <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-800/30 blur-3xl" /> */}
       </div>
               <AnimateOnScroll delay={80}>
-                <div className="sticky top-28 rounded-2xl border border-zinc-800/60 bg-zinc-900/40 p-6 shadow-xl backdrop-blur-sm sm:p-8">
-                  <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-linear-to-b from-blue-500 to-blue-700/60" />
+                <div className="sticky top-28 rounded-lg border border-zinc-800/60 bg-theme-card p-6 shadow-xl backdrop-blur-sm sm:p-8">
+                  <div className="absolute left-0 top-0 h-full w-1 rounded-l-3xl bg-linear-to-b from-blue-500 to-blue-700/60" />
                   <div className="pl-4 sm:pl-5">
-                  <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
+                  <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl lg:text-4xl">
                       Our {""}
                       <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                       Culture

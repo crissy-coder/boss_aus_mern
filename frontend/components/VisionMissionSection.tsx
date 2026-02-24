@@ -76,7 +76,7 @@ const PILLARS = [
 
 export default function VisionMissionSection() {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:px-6 sm:py-10 lg:px-8 lg:pb-24">
+    <section className="relative overflow-hidden bg-theme-section px-4 py-16 sm:px-6 sm:py-10 lg:px-8 lg:pb-24">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
@@ -87,7 +87,7 @@ export default function VisionMissionSection() {
         {/* Header: two columns */}
         <div className="mb-12 grid gap-8 lg:mb-16 lg:grid-cols-2 lg:gap-12">
           <AnimateOnScroll>
-            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               An Award Winning Sector{" "}
               <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                 Beyond Vision
@@ -96,7 +96,7 @@ export default function VisionMissionSection() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={60}>
-            <p className="text-base leading-relaxed text-zinc-400 lg:text-lg">
+            <p className="text-base leading-relaxed text-theme-muted lg:text-lg">
               A unified organization driven by clear vision, purposeful mission,
               and structured processes to deliver sustainable, high-quality
               services across diverse sectors efficiently.
@@ -108,7 +108,7 @@ export default function VisionMissionSection() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {PILLARS.map((pillar, idx) => (
             <AnimateOnScroll key={pillar.id} delay={80 + idx * 60}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100/20 bg-zinc-800/70 p-6 shadow-lg shadow-zinc-200/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-200/20 hover:shadow-xl hover:shadow-blue-100/10 sm:p-8">
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100/20 bg-theme-card p-6 shadow-lg shadow-zinc-200/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-200/20 hover:shadow-xl hover:shadow-blue-100/10 sm:p-8">
                 {/* Hover gradient overlay */}
                 <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-blue-50/0 via-blue-50/0 to-blue-100/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -118,12 +118,12 @@ export default function VisionMissionSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="relative mb-3 text-xl font-semibold text-white transition-colors duration-300 group-hover:text-blue-600">
+                <h3 className="relative mb-3 text-xl font-semibold text-theme-heading transition-colors duration-300 group-hover:text-blue-600">
                   {pillar.title}
                 </h3>
 
                 {/* Description */}
-                <p className="relative text-sm leading-relaxed text-zinc-400 sm:text-base">
+                <p className="relative text-sm leading-relaxed text-theme-muted sm:text-base">
                   {pillar.description}
                 </p>
 

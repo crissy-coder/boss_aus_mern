@@ -72,7 +72,7 @@ export default function ServicesSection() {
         {/* Split header */}
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <AnimateOnScroll className="lg:col-span-6">
-            <h2 className="text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl xl:text-5xl">
+            <h2 className="text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl xl:text-5xl">
               Shaping Tomorrow with{" "}
               <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                 Our Services Today!
@@ -80,7 +80,7 @@ export default function ServicesSection() {
             </h2>
           </AnimateOnScroll>
           <AnimateOnScroll className="lg:col-span-6" delay={80}>
-            <p className="max-w-lg text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="max-w-lg text-base leading-relaxed text-theme-muted sm:text-lg">
               Unlock your business&apos;s potential with our innovative and
               future-focused services. Together, we turn today&apos;s challenges
               into tomorrow&apos;s success stories.
@@ -92,14 +92,14 @@ export default function ServicesSection() {
         <div className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {SERVICES.map((service, index) => (
             <AnimateOnScroll key={service.title} delay={index * 50}>
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-500/30 hover:bg-white/8 hover:shadow-lg hover:shadow-blue-500/5 sm:p-7">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-theme bg-theme-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-500/30 hover:bg-theme-card/80 hover:shadow-lg hover:shadow-blue-500/5 sm:p-7">
                 <div className="mb-4 transition-transform duration-300 group-hover:scale-110">
                   <ServiceIcon icon={service.icon} title={service.title} />
                 </div>
-                <h3 className="text-xl font-bold text-white sm:text-2xl">
+                <h3 className="text-xl font-bold text-theme-heading sm:text-2xl">
                   {service.title}
                 </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-theme-muted">
                   {service.description}
                 </p>
               </article>

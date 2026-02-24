@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useTheme } from "@/components/ThemeProvider";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type DropdownChild = {
   label: string;
@@ -90,11 +92,11 @@ function ChevronDown({ className }: { className?: string }) {
 
 function SearchIcon({
   className,
-  light,
+  darkBackground,
   onClick,
 }: {
   className?: string;
-  light?: boolean;
+  darkBackground?: boolean;
   onClick?: () => void;
 }) {
   return (
@@ -103,7 +105,7 @@ function SearchIcon({
       aria-label="Search"
       onClick={onClick}
       className={`rounded-full p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 ${
-        light ? "hover:bg-white/10 text-white" : "hover:bg-black/5 text-zinc-600"
+        darkBackground ? "hover:bg-white/10 text-white" : "hover:bg-black/5 text-zinc-600"
       } ${className || ""}`}
     >
       <svg
@@ -177,17 +179,17 @@ function SearchModal({
     <div className="fixed inset-0 z-100 flex items-start justify-center pt-20 sm:pt-32">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-zinc-950/80 backdrop-blur-sm"
+        className="absolute inset-0 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Modal */}
       <div className="relative w-full max-w-2xl mx-4 animate-fade-up">
-        <div className="overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/95 shadow-2xl backdrop-blur-md">
+        <div className="overflow-hidden rounded-2xl border border-zinc-800/60 bg-theme-card shadow-2xl backdrop-blur-md">
           {/* Search Input */}
           <div className="flex items-center gap-4 border-b border-zinc-800/60 px-5 py-4">
             <svg
-              className="h-5 w-5 shrink-0 text-zinc-500"
+              className="h-5 w-5 shrink-0 text-theme-heading"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -206,7 +208,7 @@ function SearchModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg bg-zinc-800/60 px-2 py-1 text-xs font-medium text-zinc-400 transition-colors hover:bg-zinc-700/60 hover:text-white"
+              className="rounded-lg bg-theme-heading px-2 py-1 text-xs font-medium text-zinc-400 transition-colors hover:bg-zinc-700/60 hover:text-white"
             >
               ESC
             </button>
@@ -216,7 +218,7 @@ function SearchModal({
           <div className="max-h-80 overflow-y-auto p-2">
             {filteredLinks.length > 0 ? (
               <>
-                <p className="px-3 py-2 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <p className="px-3 py-2 text-xs font-medium uppercase tracking-wider text-theme-heading">
                   {query ? "Results" : "Quick Links"}
                 </p>
                 <ul>
@@ -273,6 +275,7 @@ export default function Header() {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mobileExpandedItems, setMobileExpandedItems] = useState<string[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
+  const { theme } = useTheme();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -290,18 +293,20 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const headerBg = scrolled
-    ? "bg-white/95 backdrop-blur-md shadow-sm"
+    ? theme === "light"
+      ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-zinc-200/80"
+      : "bg-zinc-900/95 backdrop-blur-md shadow-sm border-b border-zinc-800/80"
     : "bg-transparent";
-  const light = !scrolled;
+  const overDarkBackground = !scrolled && theme === "dark";
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
+        {/* Logo - light accent when over dark hero (dark theme + not scrolled) */}
         <div className="flex shrink-0">
-          <Logo light={light} />
+          <Logo light={overDarkBackground} />
         </div>
 
         {/* Desktop Nav */}
@@ -322,10 +327,12 @@ export default function Header() {
                 href={link.href}
                 className={`group relative flex items-center gap-1 py-2 text-sm font-medium tracking-wide transition-colors duration-200
                   ${
-                    light
+                    theme === "dark"
                       ? isActive(link.href)
                         ? "text-white"
-                        : "text-zinc-300 hover:text-white"
+                        : scrolled
+                          ? "text-zinc-400 hover:text-white"
+                          : "text-zinc-300 hover:text-white"
                       : isActive(link.href)
                         ? "text-zinc-900"
                         : "text-zinc-600 hover:text-zinc-900"
@@ -335,7 +342,7 @@ export default function Header() {
                 {/* Active underline */}
                 <span
                   className={`absolute bottom-0 left-0 h-0.5 transition-all duration-200 ${
-                    light ? "bg-white" : "bg-zinc-900"
+                    theme === "dark" ? "bg-white" : "bg-zinc-900"
                   } ${isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"}`}
                   aria-hidden
                 />
@@ -358,7 +365,7 @@ export default function Header() {
                   }`}
                 >
                   <ul
-                    className="min-w-[200px] rounded-lg border border-zinc-200 bg-white py-2 shadow-lg"
+                    className="min-w-[200px] rounded-lg border border-theme bg-theme-card py-2 shadow-lg"
                     role="menu"
                   >
                     {(DROPDOWN_ITEMS[link.label] || []).map((item) => (
@@ -375,7 +382,7 @@ export default function Header() {
                           <>
                             <button
                               type="button"
-                              className="flex w-full items-center justify-between px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                              className="flex w-full items-center justify-between px-4 py-2 text-sm text-theme-muted transition-colors hover:bg-(--page-pattern-color) hover:text-theme-heading"
                             >
                               {item.label}
                               <ChevronDown className="-rotate-90 ml-2" />
@@ -388,12 +395,12 @@ export default function Header() {
                                   : "invisible opacity-0 -translate-x-2"
                               }`}
                             >
-                              <ul className="min-w-[180px] rounded-lg border border-zinc-200 bg-white py-2 shadow-lg">
+                              <ul className="min-w-[180px] rounded-lg border border-theme bg-theme-card py-2 shadow-lg">
                                 {item.children.map((child) => (
                                   <li key={child.label} role="none">
                                     <Link
                                       href={child.href}
-                                      className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                                      className="block px-4 py-2 text-sm text-theme-muted transition-colors hover:bg-(--page-pattern-color) hover:text-theme-heading"
                                       role="menuitem"
                                       onClick={() => {
                                         setOpenDropdown(null);
@@ -415,7 +422,7 @@ export default function Header() {
                         ) : (
                           <Link
                             href={item.href || "#"}
-                            className="block px-4 py-2 text-sm text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                            className="block px-4 py-2 text-sm text-theme-muted transition-colors hover:bg-(--page-pattern-color) hover:text-theme-heading"
                             role="menuitem"
                             onClick={() => setOpenDropdown(null)}
                             target={
@@ -434,20 +441,24 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Search (Desktop) */}
-        <div className="hidden lg:flex shrink-0 items-center">
-          <SearchIcon light={light} onClick={() => setSearchOpen(true)} />
+        {/* Options: Theme + Search (Desktop) - icons follow theme */}
+        <div className="hidden lg:flex shrink-0 items-center gap-1">
+          <ThemeToggle />
+          <SearchIcon darkBackground={theme === "dark"} onClick={() => setSearchOpen(true)} />
         </div>
 
-        {/* Mobile: Hamburger + Search */}
+        {/* Mobile: Theme + Search + Hamburger */}
         <div className="flex lg:hidden shrink-0 items-center gap-2">
-          <SearchIcon light={light} onClick={() => setSearchOpen(true)} />
+          <ThemeToggle />
+          <SearchIcon darkBackground={theme === "dark"} onClick={() => setSearchOpen(true)} />
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
             className={`rounded-lg p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#2563EB]/30 ${
-              light ? "text-white hover:bg-white/10" : "text-zinc-600 hover:bg-zinc-100"
+              theme === "dark"
+                ? "text-white hover:bg-white/10"
+                : "text-zinc-600 hover:bg-zinc-100"
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -486,7 +497,7 @@ export default function Header() {
         }`}
       >
         <nav
-          className="border-t border-zinc-200 bg-white px-4 py-4 shadow-lg"
+          className="border-t border-theme bg-theme-card px-4 py-4 shadow-lg"
           aria-label="Mobile"
         >
           <ul className="space-y-1">
@@ -496,15 +507,15 @@ export default function Header() {
                   href={link.href}
                   className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                     isActive(link.href)
-                      ? "bg-zinc-100 text-zinc-900"
-                      : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
+                      ? "bg-(--page-pattern-color) text-theme-heading"
+                      : "text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
                 {link.hasDropdown && link.label in DROPDOWN_ITEMS && (
-                  <ul className="ml-4 mt-1 space-y-1 border-l-2 border-zinc-200 pl-4">
+                  <ul className="ml-4 mt-1 space-y-1 border-l-2 border-theme pl-4">
                     {(DROPDOWN_ITEMS[link.label] || []).map((item) => (
                       <li key={item.label}>
                         {item.children ? (
@@ -518,7 +529,7 @@ export default function Header() {
                                     : [...prev, item.label]
                                 )
                               }
-                              className="flex w-full items-center justify-between py-2 text-sm text-zinc-500 hover:text-zinc-900"
+                              className="flex w-full items-center justify-between py-2 text-sm text-theme-muted hover:text-theme-heading"
                             >
                               {item.label}
                               <ChevronDown
@@ -530,12 +541,12 @@ export default function Header() {
                               />
                             </button>
                             {mobileExpandedItems.includes(item.label) && (
-                              <ul className="ml-4 space-y-1 border-l-2 border-zinc-100 pl-4">
+                              <ul className="ml-4 space-y-1 border-l-2 border-theme pl-4">
                                 {item.children.map((child) => (
                                   <li key={child.label}>
                                     <Link
                                       href={child.href}
-                                      className="block py-2 text-sm text-zinc-400 hover:text-zinc-900"
+                                      className="block py-2 text-sm text-theme-muted hover:text-theme-heading"
                                       onClick={() => setMobileMenuOpen(false)}
                                       target={
                                         child.href.startsWith("http")
@@ -553,7 +564,7 @@ export default function Header() {
                         ) : (
                           <Link
                             href={item.href || "#"}
-                            className="block py-2 text-sm text-zinc-500 hover:text-zinc-900"
+                            className="block py-2 text-sm text-theme-muted hover:text-theme-heading"
                             onClick={() => setMobileMenuOpen(false)}
                             target={
                               item.href?.startsWith("http") ? "_blank" : undefined

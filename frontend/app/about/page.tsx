@@ -8,15 +8,15 @@ export default function AboutPage() {
   return (
     <>
     <TimelineSection />
-        <div className="page-pattern min-h-screen bg-zinc-950">
+        <div className="page-pattern min-h-screen bg-theme-muted">
       {/* Page header */}
-      <section className="border-b border-zinc-800/50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <AnimateOnScroll>
             <p className="mb-2 text-sm font-medium uppercase tracking-wider text-blue-500">
               About us
             </p>
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
               The Story Behind Our Inception
             </h1>
           </AnimateOnScroll>
@@ -26,7 +26,7 @@ export default function AboutPage() {
       {/* Main content */}
       <section className="px-4">
         <div className="mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/40 px-6 py-10 shadow-xl backdrop-blur-sm sm:px-10 sm:py-14">
+          <div className="overflow-hidden rounded-2xl bg-zinc-900/100 px-6 py-10 shadow-xl backdrop-blur-sm sm:px-10 sm:py-14">
             <div className="relative">
               {/* Accent line */}
               <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-linear-to-b from-blue-500 to-blue-700/60" />
@@ -69,7 +69,7 @@ export default function AboutPage() {
       </section>
 
       {/* Who We Are - two columns: globe graphic + text */}
-      <section className="border-t border-zinc-800/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <section className=" px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
             {/* Left: Image placeholder – replace src with your image (e.g. public/about-who-we-are.png) */}
@@ -99,13 +99,13 @@ export default function AboutPage() {
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-500">
                   Who We Are
                 </p>
-                <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
+                <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl lg:text-4xl">
                   Creative Agency that Help you{" "}
                   <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                   go Ahead.
               </span>
                 </h2>
-                <div className="text-base leading-relaxed text-zinc-300 sm:text-lg">
+                <div className="text-base leading-relaxed text-theme-muted sm:text-lg">
                   <p>
                     Born with a simple yet bold idea – to impact lives
                     meaningfully – today, the BOSS Group has blossomed into a

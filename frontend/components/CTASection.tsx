@@ -15,13 +15,13 @@ export default function CTASection() {
     <section className="relative" style={{ paddingTop: "0px", paddingBottom: "80px" }}>
       <div className="mx-auto max-w-6xl">
         <AnimateOnScroll>
-        <div className="overflow-hidden rounded-2xl border border-blue-800/50 from-blue-950/90 via-blue-900/80 to-blue-950/90 shadow-2xl shadow-blue-950/50">
+        <div className="overflow-hidden rounded-2xl border border-blue-800/50 from-blue-950/90 via-blue-900/80 to-blue-950/90 shadow-lg shadow-blue-950/10">
           <div className="grid min-h-[320px] grid-cols-1 lg:grid-cols-12">
             <div className="relative flex flex-col justify-center px-8 py-12 sm:px-12 sm:py-16 lg:col-span-8 lg:px-16">
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-blue-200/90">
                 Curious about our impact?
               </p>
-              <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
                 Let&apos;s Get in Touch!
               </h2>
               <Link

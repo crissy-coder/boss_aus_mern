@@ -5,7 +5,7 @@ import ServicesSection from "@/components/ServicesSection";
 
 export default function Home() {
   return (
-    <div className="page-pattern min-h-screen bg-zinc-950">
+    <div className="page-pattern min-h-screen bg-theme-section">
       <HeroSection />
       <TimelineSection />
       <ImpactSection />
