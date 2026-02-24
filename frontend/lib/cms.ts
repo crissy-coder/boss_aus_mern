@@ -1,9 +1,15 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { createHash } from "crypto";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const PAGES_DIR = path.join(CONTENT_DIR, "pages");
 const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
+
+/** Unique filename from slug so "test page" and "test!page" don't collide. */
+function slugToFileId(slug: string): string {
+  return createHash("sha256").update(slug).digest("hex").slice(0, 16);
+}
 
 export type PageMeta = {
   slug: string;
@@ -34,21 +40,38 @@ export async function listPages(): Promise<PageMeta[]> {
 
 export async function getPage(slug: string): Promise<PageContent | null> {
   await ensureDirs();
-  const safeSlug = slug.replace(/[^a-z0-9-_/]/gi, "");
-  const filePath = path.join(PAGES_DIR, `${safeSlug}.json`);
-  try {
-    const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    return null;
+  const fileId = slugToFileId(slug);
+  const filePath = path.join(PAGES_DIR, `${fileId}.json`);
+  const legacySlug = slug.replace(/[^a-z0-9-_/]/gi, "");
+  const legacyPath = path.join(PAGES_DIR, `${legacySlug}.json`);
+  for (const p of [filePath, legacyPath]) {
+    try {
+      const data = await fs.readFile(p, "utf-8");
+      const page = JSON.parse(data) as PageContent;
+      if (page.slug !== slug) continue;
+      return page;
+    } catch {
+      // try next path
+    }
   }
+  return null;
 }
 
 export async function savePage(page: PageContent): Promise<void> {
   await ensureDirs();
-  const safeSlug = page.slug.replace(/[^a-z0-9-_/]/gi, "");
-  const filePath = path.join(PAGES_DIR, `${safeSlug}.json`);
+  const fileId = slugToFileId(page.slug);
+  const filePath = path.join(PAGES_DIR, `${fileId}.json`);
   await fs.writeFile(filePath, JSON.stringify(page, null, 2), "utf-8");
+
+  const legacySlug = page.slug.replace(/[^a-z0-9-_/]/gi, "");
+  if (legacySlug !== fileId) {
+    const legacyPath = path.join(PAGES_DIR, `${legacySlug}.json`);
+    try {
+      await fs.unlink(legacyPath);
+    } catch {
+      // ignore
+    }
+  }
 
   const indexPath = path.join(PAGES_DIR, "index.json");
   const list = await listPages();
@@ -68,12 +91,15 @@ export async function savePage(page: PageContent): Promise<void> {
 }
 
 export async function deletePage(slug: string): Promise<void> {
-  const safeSlug = slug.replace(/[^a-z0-9-_/]/gi, "");
-  const filePath = path.join(PAGES_DIR, `${safeSlug}.json`);
-  try {
-    await fs.unlink(filePath);
-  } catch {
-    // ignore
+  const fileId = slugToFileId(slug);
+  const legacySlug = slug.replace(/[^a-z0-9-_/]/gi, "");
+  for (const id of [fileId, legacySlug]) {
+    const filePath = path.join(PAGES_DIR, `${id}.json`);
+    try {
+      await fs.unlink(filePath);
+    } catch {
+      // ignore
+    }
   }
   const list = (await listPages()).filter((p) => p.slug !== slug);
   const indexPath = path.join(PAGES_DIR, "index.json");

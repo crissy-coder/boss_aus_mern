@@ -1,8 +1,8 @@
 {
   "slug": "testingpage",
   "title": "New Service Page",
-  "type": "service",
-  "updatedAt": "2026-02-24T06:21:50.062Z",
+  "type": "home",
+  "updatedAt": "2026-02-24T07:16:07.639Z",
   "content": {
     "Heading": "New service page for testing",
     "subheading": "this the sub heading for testting page",

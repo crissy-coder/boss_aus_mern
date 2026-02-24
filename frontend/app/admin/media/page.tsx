@@ -16,6 +16,7 @@ export default function AdminMediaPage() {
   const [copyMsg, setCopyMsg] = useState("");
 
   const load = () => {
+    setLoading(true);
     fetch("/api/admin/media")
       .then((r) => r.json())
       .then(setFiles)

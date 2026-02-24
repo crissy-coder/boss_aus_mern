@@ -44,10 +44,15 @@ export default function AdminLayout({
   ];
 
   const logout = () => {
-    fetch("/api/admin/auth", { method: "DELETE" }).then(() => {
-      setAuth(false);
-      router.push("/admin/login");
-    });
+    fetch("/api/admin/auth", { method: "DELETE" })
+      .then(() => {
+        setAuth(false);
+        router.push("/admin/login");
+      })
+      .catch(() => {
+        setAuth(false);
+        router.push("/admin/login");
+      });
   };
 
   return (
