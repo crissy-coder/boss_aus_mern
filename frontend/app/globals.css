@@ -1,8 +1,56 @@
 @import "tailwindcss";
 
+/* Default (light) - used when no data-theme or as fallback */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --heading: #020617;
+  --muted: #475569;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --focus-ring: #6366f1;
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-text: #0f172a;
+  --section-bg: #f1f5f9;
+  --page-pattern-color: rgba(15, 23, 42, 0.03);
+}
+
+/* Dark theme - user choice or system preference when no choice */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --heading: #fafafa;
+  --muted: #a1a1aa;
+  --card: #18181b;
+  --card-border: #27272a;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --focus-ring: #818cf8;
+  --header-bg: rgba(9, 9, 11, 0.95);
+  --header-text: #fafafa;
+  --section-bg: #09090b;
+  --page-pattern-color: rgba(255, 255, 255, 0.04);
+}
+
+/* System preference fallback when data-theme not yet set (avoids flash) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background: #0a0a0a;
+    --foreground: #fafafa;
+    --heading: #fafafa;
+    --muted: #a1a1aa;
+    --card: #18181b;
+    --card-border: #27272a;
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --focus-ring: #818cf8;
+    --header-bg: rgba(9, 9, 11, 0.95);
+    --header-text: #fafafa;
+    --section-bg: #09090b;
+    --page-pattern-color: rgba(255, 255, 255, 0.04);
+  }
 }
 
 @theme inline {
@@ -12,18 +60,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Theme-aware utilities */
+.text-theme-heading { color: var(--heading); }
+.text-theme-muted { color: var(--muted); }
+.bg-theme-card { background-color: var(--card); }
+.bg-theme-section { background-color: var(--section-bg); }
+.border-theme { border-color: var(--card-border); }
+.theme-toggle-btn:hover { background: var(--page-pattern-color); }
+.placeholder-theme::placeholder { color: var(--muted); opacity: 1; }
+.placeholder\:text-theme-muted::placeholder { color: var(--muted); opacity: 1; }
 
 /* Hero section fade-up animation */
 @keyframes fade-up {
@@ -57,11 +108,11 @@ body {
   animation: timeline-slide-in 0.4s ease-out forwards;
 }
 
-/* Subtle page background pattern */
+/* Subtle page background pattern - theme-aware */
 .page-pattern {
   background-image: radial-gradient(
       circle at 1px 1px,
-      rgba(255, 255, 255, 0.04) 1px,
+      var(--page-pattern-color) 1px,
       transparent 0
     );
   background-size: 32px 32px;

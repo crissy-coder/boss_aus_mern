@@ -137,13 +137,13 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950">
-      {/* Dot pattern */}
+    <div className="min-h-screen bg-theme-section">
+      {/* Dot pattern - theme-aware */}
       <div
         className="pointer-events-none fixed inset-0 opacity-30"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, var(--page-pattern-color) 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -159,13 +159,13 @@ export default function ContactPage() {
             <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-blue-400">
               Get in Touch
             </p>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight text-theme-heading sm:text-5xl lg:text-6xl">
               Let&apos;s Start a{" "}
               <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Conversation
               </span>
             </h1>
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-zinc-400">
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-theme-muted">
               Have a question, project idea, or want to partner with us? We&apos;d love to hear from you.
               Our team is ready to help you achieve your goals.
             </p>
@@ -180,16 +180,16 @@ export default function ContactPage() {
             {/* Contact Form - 3 cols */}
             <div className="lg:col-span-3">
               <AnimateOnScroll>
-                <div className="overflow-hidden rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-6 shadow-2xl backdrop-blur-md sm:p-8 lg:p-10">
-                  <h2 className="mb-2 text-2xl font-bold text-white">Send us a Message</h2>
-                  <p className="mb-8 text-zinc-400">
+                <div className="overflow-hidden rounded-2xl border border-theme bg-theme-card p-6 shadow-2xl backdrop-blur-md sm:p-8 lg:p-10">
+                  <h2 className="mb-2 text-2xl font-bold text-theme-heading">Send us a Message</h2>
+                  <p className="mb-8 text-theme-muted">
                     Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid gap-6 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="name" className="mb-2 block text-sm font-medium text-zinc-300">
+                        <label htmlFor="name" className="mb-2 block text-sm font-medium text-theme-muted">
                           Full Name *
                         </label>
                         <input
@@ -199,12 +199,12 @@ export default function ContactPage() {
                           value={form.name}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-xl border border-zinc-700/60 bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                           placeholder="John Doe"
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="mb-2 block text-sm font-medium text-zinc-300">
+                        <label htmlFor="email" className="mb-2 block text-sm font-medium text-theme-muted">
                           Email Address *
                         </label>
                         <input
@@ -214,7 +214,7 @@ export default function ContactPage() {
                           value={form.email}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-xl border border-zinc-700/60 bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                           placeholder="john@example.com"
                         />
                       </div>
@@ -222,7 +222,7 @@ export default function ContactPage() {
 
                     <div className="grid gap-6 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="phone" className="mb-2 block text-sm font-medium text-zinc-300">
+                        <label htmlFor="phone" className="mb-2 block text-sm font-medium text-theme-muted">
                           Phone Number
                         </label>
                         <input
@@ -231,12 +231,12 @@ export default function ContactPage() {
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-zinc-700/60 bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                           placeholder="+61 400 000 000"
                         />
                       </div>
                       <div>
-                        <label htmlFor="subject" className="mb-2 block text-sm font-medium text-zinc-300">
+                        <label htmlFor="subject" className="mb-2 block text-sm font-medium text-theme-muted">
                           Subject *
                         </label>
                         <select
@@ -245,7 +245,7 @@ export default function ContactPage() {
                           value={form.subject}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-xl border border-zinc-700/60 bg-zinc-800/50 px-4 py-3 text-white outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         >
                           <option value="">Select a subject</option>
                           <option value="general">General Inquiry</option>
@@ -258,7 +258,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="mb-2 block text-sm font-medium text-zinc-300">
+                      <label htmlFor="message" className="mb-2 block text-sm font-medium text-theme-muted">
                         Message *
                       </label>
                       <textarea
@@ -268,7 +268,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="w-full resize-none rounded-xl border border-zinc-700/60 bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                        className="w-full resize-none rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                         placeholder="Tell us about your project or inquiry..."
                       />
                     </div>
@@ -276,7 +276,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="group w-full rounded-xl bg-linear-to-r from-blue-600 to-blue-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:from-blue-500 hover:to-blue-400 hover:shadow-blue-500/30 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="group w-full rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-blue-500/30 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {status === "loading" ? (
                         <span className="flex items-center justify-center gap-2">
@@ -310,14 +310,14 @@ export default function ContactPage() {
             <div className="space-y-6 lg:col-span-2">
               {CONTACT_INFO.map((info, idx) => (
                 <AnimateOnScroll key={info.id} delay={60 + idx * 40}>
-                  <div className="group overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-900/50 p-5 backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:bg-zinc-900/70">
+                  <div className="group overflow-hidden rounded-xl border border-theme bg-theme-card p-5 backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:bg-theme-card/80">
                     <div className="flex items-start gap-4">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-blue-500/20 to-purple-500/20 text-blue-400 transition-colors group-hover:from-blue-500/30 group-hover:to-purple-500/30">
                         <IconComponent name={info.icon} />
                       </div>
                       <div>
-                        <h3 className="mb-1 font-semibold text-white">{info.title}</h3>
-                        <p className="text-sm text-zinc-400">{info.content}</p>
+                        <h3 className="mb-1 font-semibold text-theme-heading">{info.title}</h3>
+                        <p className="text-sm text-theme-muted">{info.content}</p>
                       </div>
                     </div>
                   </div>
@@ -326,8 +326,8 @@ export default function ContactPage() {
 
               {/* Social Links */}
               <AnimateOnScroll delay={220}>
-                <div className="overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-900/50 p-5 backdrop-blur-md">
-                  <h3 className="mb-4 font-semibold text-white">Follow Us</h3>
+                <div className="overflow-hidden rounded-xl border border-theme bg-theme-card p-5 backdrop-blur-md">
+                  <h3 className="mb-4 font-semibold text-theme-heading">Follow Us</h3>
                   <div className="flex gap-3">
                     {SOCIAL_LINKS.map((social) => (
                       <a
@@ -335,7 +335,7 @@ export default function ContactPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/60 text-zinc-400 transition-all duration-200 hover:bg-blue-500/20 hover:text-blue-400"
+                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-(--page-pattern-color) text-theme-muted transition-all duration-200 hover:bg-blue-500/20 hover:text-blue-400"
                         aria-label={social.name}
                       >
                         <IconComponent name={social.icon} />
@@ -350,17 +350,17 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="relative border-t border-zinc-800/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section className="relative border-t border-theme px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="relative mx-auto max-w-3xl">
           <AnimateOnScroll>
             <div className="mb-10 text-center">
-              <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="mb-3 text-2xl font-bold text-theme-heading sm:text-3xl">
                 Frequently Asked{" "}
                 <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   Questions
                 </span>
               </h2>
-              <p className="text-zinc-400">
+              <p className="text-theme-muted">
                 Can&apos;t find what you&apos;re looking for? Reach out to us directly.
               </p>
             </div>
@@ -372,10 +372,10 @@ export default function ContactPage() {
               return (
                 <AnimateOnScroll key={faq.id} delay={60 + idx * 40}>
                   <div
-                    className={`overflow-hidden rounded-xl border backdrop-blur-md transition-all duration-300 ${
+                    className={`overflow-hidden rounded-xl border border-theme backdrop-blur-md transition-all duration-300 ${
                       isOpen
-                        ? "border-blue-500/50 bg-zinc-900/70"
-                        : "border-zinc-800/60 bg-zinc-900/40 hover:border-zinc-700/60"
+                        ? "border-blue-500/50 bg-theme-card/80"
+                        : "bg-theme-card/50 hover:border-blue-500/30"
                     }`}
                   >
                     <button
@@ -383,14 +383,14 @@ export default function ContactPage() {
                       onClick={() => setOpenFaq(isOpen ? null : faq.id)}
                       className="flex w-full items-center justify-between px-6 py-5 text-left"
                     >
-                      <span className={`font-medium ${isOpen ? "text-blue-400" : "text-white"}`}>
+                      <span className={`font-medium ${isOpen ? "text-blue-400" : "text-theme-heading"}`}>
                         {faq.question}
                       </span>
                       <span
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-lg transition-all duration-300 ${
                           isOpen
                             ? "bg-blue-500 text-white"
-                            : "bg-zinc-800/60 text-zinc-400"
+                            : "bg-(--page-pattern-color) text-theme-muted"
                         }`}
                       >
                         {isOpen ? "−" : "+"}
@@ -401,7 +401,7 @@ export default function ContactPage() {
                         isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <p className="px-6 pb-5 text-sm leading-relaxed text-zinc-400">
+                      <p className="px-6 pb-5 text-sm leading-relaxed text-theme-muted">
                         {faq.answer}
                       </p>
                     </div>
@@ -414,26 +414,26 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative border-t border-zinc-800/50 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section className="relative border-t border-theme px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-blue-950/20 to-transparent" />
         <div className="relative mx-auto max-w-4xl text-center">
           <AnimateOnScroll>
-            <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="mb-4 text-2xl font-bold text-theme-heading sm:text-3xl">
               Ready to Take the Next Step?
             </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-zinc-400">
+            <p className="mx-auto mb-8 max-w-2xl text-theme-muted">
               Explore our services or learn more about how BOSS Group can help your business grow.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-600 to-blue-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:from-blue-500 hover:to-blue-400 hover:shadow-blue-500/30"
+                className="inline-flex items-center gap-2 rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-blue-500/30"
               >
                 Explore Services
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/50 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-800"
+                className="inline-flex items-center gap-2 rounded-xl border border-theme bg-theme-card/50 px-8 py-4 text-base font-semibold text-theme-heading transition-all duration-300 hover:bg-theme-card hover:border-theme"
               >
                 About Us
               </Link>

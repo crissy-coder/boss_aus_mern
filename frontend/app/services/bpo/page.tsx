@@ -112,9 +112,9 @@ const BENEFITS = [
 
 export default function BPOPage() {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-theme-muted">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <section className="relative overflow-hidden bg-theme-muted px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
         <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" />
@@ -127,7 +127,7 @@ export default function BPOPage() {
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-400">
                   BPO Services
                 </p>
-                <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+                <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
                   Let Us Handle the Numbers,{" "}
                   <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     While You Focus Only on Growth!
@@ -149,7 +149,7 @@ export default function BPOPage() {
 
             {/* Illustration */}
             <AnimateOnScroll delay={100}>
-              <div className="relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-2xl border border-zinc-800/50 bg-zinc-900/30 shadow-2xl lg:mx-0">
+              <div className="relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-2xl border border-zinc-800/50 bg-theme-card shadow-2xl lg:mx-0">
                 <Image
                   src="/serviceicons/bpo_banner.png"
                   alt="BPO Services Illustration"
@@ -167,8 +167,8 @@ export default function BPOPage() {
       <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-4xl">
           <AnimateOnScroll>
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50/80 p-6 shadow-sm sm:p-8 lg:p-10">
-            <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
+            <div className="rounded-2xl border p-6 shadow-sm sm:p-8 lg:p-10">
+            <div className="pointer-events-none absolute inset-0" />
         {/* <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" /> */}
         {/* <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" /> */}
 
@@ -194,14 +194,14 @@ export default function BPOPage() {
       </section>
 
       {/* HR Outsourcing Section */}
-      <section className="bg-zinc-950 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <section className="bg-theme-muted px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <AnimateOnScroll>
             <div className="mb-10 lg:mb-14">
               <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-blue-600">
                 Human Resources
               </p>
-              <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               HR {" "}  
               <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                 Outsourcing
@@ -254,7 +254,7 @@ export default function BPOPage() {
               <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-blue-600">
                 Financial Services
               </p>
-              <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               Finance Operations{" "}
               <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                 Outsourcing
@@ -304,11 +304,11 @@ export default function BPOPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="border-t border-zinc-20 bg-zinc-950 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <section className=" bg-theme-muted px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <AnimateOnScroll>
             <div className="mb-10 text-center lg:mb-14">
-            <h2 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               Why Choose {" "}  
               <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                 BOSS BPO?
@@ -349,7 +349,7 @@ export default function BPOPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden bg-zinc-950 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <section className="relative overflow-hidden bg-theme-muted px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         {/* Background accents */}
         <div className="pointer-events-none absolute -left-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-purple-500/10 blur-3xl" />
@@ -362,7 +362,7 @@ export default function BPOPage() {
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-400">
                   Let&apos;s Work Together
                 </p>
-                <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+                <h2 className="mb-4 text-2xl font-bold text-theme-heading sm:text-3xl lg:text-4xl">
                   Ready to Streamline Your Operations?
                 </h2>
                 <p className="mb-8 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg lg:mx-0">

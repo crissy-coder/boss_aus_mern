@@ -49,7 +49,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+      <h3 className="text-sm font-semibold uppercase tracking-wider text-theme-heading">
         {title}
       </h3>
       <ul className="mt-4 space-y-3">
@@ -57,7 +57,7 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm text-zinc-400 transition-colors hover:text-white"
+              className="text-sm text-theme-muted transition-colors hover:text-theme-heading"
             >
               {link.label}
             </Link>
@@ -70,13 +70,13 @@ function FooterColumn({
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-800 bg-zinc-950">
+    <footer className="border-t border-theme bg-theme-section">
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 sm:py-14 lg:px-8 lg:py-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Company */}
           <div className="sm:col-span-2 lg:col-span-1">
             <FooterLogo />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-400">
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-theme-muted">
               Driven and united by the bond of friendship that has stood the test
               of time, we&apos;re not just a business empire; we&apos;re a
               tightly-knit community of change makers.
@@ -95,7 +95,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 border-t border-zinc-800 pt-8">
-          <p className="text-center text-xs text-zinc-500">
+          <p className="text-center text-xs text-theme-muted">
             © {new Date().getFullYear()} BOSS Group. All rights reserved.
           </p>
         </div>

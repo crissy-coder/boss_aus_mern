@@ -140,10 +140,10 @@ function IconBadge({
 
 export default function ImpactSection() {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section className="relative overflow-hidden bg-theme-section px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       {/* Soft gradient background for glass contrast */}
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-900/80 via-zinc-950 to-zinc-950"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--section-bg)]/80 via-[var(--section-bg)] to-[var(--section-bg)]"
         aria-hidden
       />
       <div
@@ -152,7 +152,7 @@ export default function ImpactSection() {
       />
 
       <div className="relative mx-auto max-w-7xl">
-        <h2 className="text-center text-2xl font-bold tracking-tight text-white sm:text-3xl xl:text-5xl">
+        <h2 className="text-center text-2xl font-bold tracking-tight text-theme-heading sm:text-3xl xl:text-5xl">
           Not Just Numbers, But{" "}
           <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
             Real Impacts
@@ -166,13 +166,13 @@ export default function ImpactSection() {
               className={`group relative overflow-hidden rounded-2xl border transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10
                 ${
                   card.featured
-                    ? "border-blue-500/40 bg-blue-600/20 shadow-lg shadow-blue-500/10 backdrop-blur-xl"
+                    ? "border-blue-500/40 bg-white/5 backdrop-blur-xl hover:border-white/20 hover:bg-white/10"
                     : "border-white/10 bg-white/5 backdrop-blur-xl hover:border-white/20 hover:bg-white/10"
                 }`}
             >
               <div
                 className={`flex flex-col p-6 sm:p-7 ${
-                  card.featured ? "text-white" : "text-zinc-100"
+                  card.featured ? "text-theme-heading" : "text-theme-heading"
                 }`}
               >
                 <div className="mb-4">
@@ -187,7 +187,7 @@ export default function ImpactSection() {
                 </p>
                 <p
                   className={`mt-2 text-sm leading-snug sm:text-base ${
-                    card.featured ? "text-blue-100/90" : "text-zinc-400"
+                    card.featured ? "text-theme-muted" : "text-theme-muted"
                   }`}
                 >
                   {card.description}

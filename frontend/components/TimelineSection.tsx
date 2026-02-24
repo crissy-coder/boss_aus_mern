@@ -209,16 +209,16 @@ export default function TimelineSection() {
   const entry = TIMELINE_ENTRIES[current];
 
   return (
-    <section className="relative bg-zinc-900 py-16 sm:py-20 lg:py-24">
+    <section className="relative bg-theme-section py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-white sm:text-3xl xl:text-5xl lg:mb-14">
+        <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-theme-heading sm:text-3xl xl:text-5xl lg:mb-14">
           Making History In {" "}
           <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
           Our Industry
           </span>
         </h2>
 
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/80 shadow-2xl">
+        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/100 shadow-2xl">
           {/* Slide content */}
           <div
             className="animate-timeline-in flex min-h-[420px] flex-col lg:min-h-[380px] lg:flex-row"
@@ -248,7 +248,7 @@ export default function TimelineSection() {
                 <h3 className="text-xl font-bold text-white sm:text-2xl">
                   {entry.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-400 sm:text-base">
+                <p className="mt-2 text-sm leading-relaxed text-theme-muted sm:text-base">
                   {entry.description}
                 </p>
               </div>

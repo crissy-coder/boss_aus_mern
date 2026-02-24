@@ -65,9 +65,9 @@ export default function AdminLoginPage() {
               {loading ? "Signing in..." : "Sign in"}
             </button>
           </form>
-          {/* <p className="mt-4 text-xs text-zinc-500">
-            Set ADMIN_PASSWORD in .env for production.
-          </p> */}
+          <p className="mt-4 text-xs text-zinc-500">
+            On Vercel: set <code className="rounded bg-zinc-800 px-1">ADMIN_PASSWORD</code> in Project → Settings → Environment Variables.
+          </p>
         </div>
       </div>
     </div>

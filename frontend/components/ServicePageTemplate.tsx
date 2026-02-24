@@ -95,26 +95,26 @@ function AccordionComponent({ accordion }: { accordion: AccordionSection }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+    <section className="relative overflow-hidden bg-theme-muted px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       {/* Dot pattern background */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="pointer-events-none absolute inset-0 opacity-40 bg-theme-muted"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, var(--page-pattern-color) 1px, transparent 0)",
           backgroundSize: "24px 24px",
         }}
       />
 
       {/* Gradient overlays */}
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/30 via-transparent to-purple-950/20" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/30" />
       <div className="pointer-events-none absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
       <div className="pointer-events-none absolute -left-40 top-1/3 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl bg-theme-muted">
         {/* Title */}
         <AnimateOnScroll>
-          <h2 className="mb-12 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mb-12 text-3xl font-bold tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
             {accordion.title}{" "}
             {accordion.highlight && (
               <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -151,10 +151,10 @@ function AccordionComponent({ accordion }: { accordion: AccordionSection }) {
               return (
                 <AnimateOnScroll key={item.id} delay={60 + idx * 40}>
                   <div
-                    className={`group overflow-hidden rounded-xl border backdrop-blur-md transition-all duration-300 ${
+                    className={`group overflow-hidden rounded-xl border border-theme transition-all duration-300 ${
                       isOpen
-                        ? "border-blue-500/60 bg-white/10 shadow-lg shadow-blue-500/20"
-                        : "border-zinc-700/50 bg-zinc-800/40 hover:border-zinc-600/60 hover:bg-zinc-800/60"
+                        ? "border-blue-500/60 bg-theme-card/80 shadow-lg shadow-blue-500/20"
+                        : "bg-theme-card/50 hover:border-blue-500/30 hover:bg-theme-card/80"
                     }`}
                   >
                     <button
@@ -164,7 +164,7 @@ function AccordionComponent({ accordion }: { accordion: AccordionSection }) {
                     >
                       <span
                         className={`text-base font-semibold transition-colors sm:text-lg ${
-                          isOpen ? "text-blue-400" : "text-white"
+                          isOpen ? "text-blue-400" : "text-theme-heading"
                         }`}
                       >
                         {item.title}
@@ -173,7 +173,7 @@ function AccordionComponent({ accordion }: { accordion: AccordionSection }) {
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xl font-medium transition-all duration-300 ${
                           isOpen
                             ? "bg-blue-500 text-white"
-                            : "bg-zinc-700/60 text-zinc-400 group-hover:bg-blue-500/20 group-hover:text-blue-400"
+                            : "bg-(--page-pattern-color) text-theme-muted group-hover:bg-blue-500/20 group-hover:text-blue-400"
                         }`}
                       >
                         {isOpen ? "−" : "+"}
@@ -185,7 +185,7 @@ function AccordionComponent({ accordion }: { accordion: AccordionSection }) {
                         isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <p className="px-6 pb-5 text-sm leading-relaxed text-zinc-300 sm:text-base">
+                      <p className="px-6 pb-5 text-sm leading-relaxed text-theme-muted sm:text-base">
                         {item.description}
                       </p>
                     </div>
@@ -208,10 +208,10 @@ export default function ServicePageTemplate({
   const { hero, intro, sections, accordion, benefits, cta } = config;
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-theme-section">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
+      <section className="relative overflow-hidden bg-theme-section px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-br" />
         {/* <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" /> */}
         {/* <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" /> */}
 
@@ -222,13 +222,13 @@ export default function ServicePageTemplate({
                 <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-400">
                   {hero.label}
                 </p>
-                <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+                <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
                   {hero.title}{" "}
                   <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     {hero.highlight}
                   </span>
                 </h1>
-                <p className="mb-8 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+                <p className="mb-8 max-w-xl text-base leading-relaxed text-theme-muted sm:text-lg">
                   {hero.description}
                 </p>
                 <Link
@@ -241,7 +241,7 @@ export default function ServicePageTemplate({
             </div>
 
             <AnimateOnScroll delay={100}>
-              <div className="relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-2xl border border-zinc-800/50 bg-zinc-900/30 shadow-2xl lg:mx-0">
+              <div className="relative mx-auto aspect-square w-full max-w-lg overflow-hidden rounded-2xl border border-theme bg-theme-card/30 shadow-2xl lg:mx-0">
                 <Image
                   src={hero.image}
                   alt={hero.title}
@@ -262,14 +262,14 @@ export default function ServicePageTemplate({
           <div className="mx-auto max-w-4xl">
             
             <AnimateOnScroll>
-            <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-br" />
         {/* <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" /> */}
         {/* <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" /> */}
-              <div className="rounded-2xl border border-zinc-200 bg-zinc-50/80 p-6 shadow-sm sm:p-8 lg:p-10">
+              <div className="rounded-2xl border border-theme bg-theme-card/80 p-6 shadow-sm sm:p-8 lg:p-10">
                 {intro.paragraphs.map((text, idx) => (
                   <p
                     key={idx}
-                    className={`text-base leading-relaxed text-zinc-600 sm:text-lg ${idx < intro.paragraphs.length - 1 ? "mb-4" : ""}`}
+                    className={`text-base leading-relaxed text-theme-muted sm:text-lg ${idx < intro.paragraphs.length - 1 ? "mb-4" : ""}`}
                   >
                     {text}
                   </p>
@@ -288,11 +288,11 @@ export default function ServicePageTemplate({
         return (
           <section
             key={sectionIdx}
-            className={`px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 ${isGray ? "bg-zinc-950" : "bg-zinc-950"}`}
+            className={`px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 bg-theme-section`}
           >
             <div className="mx-auto max-w-7xl">
              <AnimateOnScroll>
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-br" />
         {/* <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" /> */}
         {/* <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" /> */}
                 <div className="mb-10 lg:mb-14">
@@ -302,14 +302,14 @@ export default function ServicePageTemplate({
                   {/* <h2 className="mb-4 text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
                     {section.title}
                   </h2> */}
-                   <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
+                   <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl lg:text-4xl">
                    {section.title}{" "}
                    <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                    {section.highlight}
                    </span>
                    {section.Subtitle}
                     </h2>
-                  <p className="max-w-3xl text-base text-zinc-400 sm:text-lg">
+                  <p className="max-w-3xl text-base text-theme-muted sm:text-lg">
                     {section.description}
                   </p>
                 </div>
@@ -330,7 +330,7 @@ export default function ServicePageTemplate({
 
                   return (
                     <AnimateOnScroll key={service.id} delay={60 + idx * 40}>
-                      <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-lg shadow-zinc-200/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8">
+                      <div className="group relative h-full overflow-hidden rounded-2xl border border-theme bg-theme-card p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-8">
                         <div
                           className={`absolute left-0 top-0 h-1 w-full bg-linear-to-r ${color}`}
                         />
@@ -346,10 +346,10 @@ export default function ServicePageTemplate({
                           />
                         </div>
 
-                        <h3 className="mb-3 text-lg font-semibold text-zinc-900">
+                        <h3 className="mb-3 text-lg font-semibold text-theme-heading">
                           {service.title}
                         </h3>
-                        <p className="text-sm leading-relaxed text-zinc-600">
+                        <p className="text-sm leading-relaxed text-theme-muted">
                           {service.description}
                         </p>
                       </div>
@@ -367,17 +367,17 @@ export default function ServicePageTemplate({
 
       {/* Benefits Section */}
       {benefits && (
-        <section className="border-t border-zinc-200 bg-zinc-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <section className="border-t border-theme bg-theme-section px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-7xl">
             <AnimateOnScroll>
               <div className="mb-10 text-center lg:mb-14">
-                <h2 className="mb-3 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+                <h2 className="mb-3 text-2xl font-bold tracking-tight text-theme-heading sm:text-3xl">
                   {benefits.title}{" "}
                   <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     {benefits.highlight}
                   </span>
                 </h2>
-                <p className="mx-auto max-w-2xl text-base text-zinc-600">
+                <p className="mx-auto max-w-2xl text-base text-theme-muted">
                   {benefits.description}
                 </p>
               </div>
@@ -386,7 +386,7 @@ export default function ServicePageTemplate({
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {benefits.items.map((benefit, idx) => (
                 <AnimateOnScroll key={benefit.id} delay={60 + idx * 50}>
-                  <div className="group flex flex-col items-center rounded-2xl border border-zinc-200/80 bg-white p-6 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <div className="group flex flex-col items-center rounded-2xl border border-theme bg-theme-card p-6 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                     <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full bg-linear-to-br from-blue-50 to-purple-50 p-4 transition-transform duration-300 group-hover:scale-110">
                       <Image
                         src={benefit.icon}
@@ -396,10 +396,10 @@ export default function ServicePageTemplate({
                       />
                     </div>
 
-                    <h3 className="mb-2 text-base font-semibold text-zinc-900">
+                    <h3 className="mb-2 text-base font-semibold text-theme-heading">
                       {benefit.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-zinc-600">
+                    <p className="text-sm leading-relaxed text-theme-muted">
                       {benefit.description}
                     </p>
                   </div>
@@ -412,7 +412,7 @@ export default function ServicePageTemplate({
 
       {/* CTA Section */}
       {cta && (
-        <section className="relative overflow-hidden bg-zinc-950 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <section className="relative overflow-hidden bg-theme-section px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
           <div className="pointer-events-none absolute -left-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
           <div className="pointer-events-none absolute -right-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-purple-500/10 blur-3xl" />
 
@@ -425,23 +425,23 @@ export default function ServicePageTemplate({
                       {cta.label}
                     </p>
                   )}
-                  <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+                  <h2 className="mb-4 text-2xl font-bold text-theme-heading sm:text-3xl lg:text-4xl">
                     {cta.title}
                   </h2>
-                  <p className="mb-8 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg lg:mx-0">
+                  <p className="mb-8 max-w-xl text-base leading-relaxed text-theme-muted sm:text-lg lg:mx-0">
                     {cta.description}
                   </p>
                   <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
                     <Link
                       href={cta.primaryButton.link}
-                      className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                      className="inline-flex items-center gap-2 rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
                     >
                       {cta.primaryButton.text}
                     </Link>
                     {cta.secondaryButton && (
                       <Link
                         href={cta.secondaryButton.link}
-                        className="inline-flex items-center gap-2 rounded-xl border border-zinc-700 bg-zinc-800/50 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-zinc-800 hover:border-zinc-600"
+                        className="inline-flex items-center gap-2 rounded-xl border border-theme bg-theme-card/50 px-8 py-4 text-base font-semibold text-theme-heading transition-all duration-300 hover:bg-theme-card hover:border-theme"
                       >
                         {cta.secondaryButton.text}
                       </Link>

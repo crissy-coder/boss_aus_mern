@@ -145,3 +145,20 @@ So: **edit/update in admin** = change JSON files → **view on site** = same app
 - **Logout:** **`DELETE /api/admin/auth`** clears that cookie.
 
 So: **Next.js only** (no Nest), **data = JSON + files**, **create = write new JSON**, **edit/update = overwrite that JSON and refresh the index**.
+
+---
+
+## Deploying to Vercel – admin login
+
+**.env.local is not deployed.** Vercel does not upload gitignored files, so `ADMIN_PASSWORD` from `.env.local` is **not** available in production. The API then falls back to the default password `admin123`, so your real password (e.g. `Boss@1234`) will not work.
+
+**Fix:** set the password in Vercel:
+
+1. Open your project on [vercel.com](https://vercel.com).
+2. Go to **Project → Settings → Environment Variables**.
+3. Add:
+   - **Name:** `ADMIN_PASSWORD`
+   - **Value:** your admin password (e.g. `Boss@1234`)
+   - **Environment:** Production (and Preview if you want the same password there).
+4. Save and **redeploy** the project (e.g. Deployments → … → Redeploy). Env vars are applied on build, so a new deployment is required.
+5. Log in at `https://your-site.vercel.app/admin/login` with that password.
