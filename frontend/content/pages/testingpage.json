@@ -1,0 +1,12 @@
+{
+  "slug": "testingpage",
+  "title": "New Service Page",
+  "type": "service",
+  "updatedAt": "2026-02-24T06:21:50.062Z",
+  "content": {
+    "Heading": "New service page for testing",
+    "subheading": "this the sub heading for testting page",
+    "Beyond Business  Were a People-Powered Revolution for a Better Tomorrow": "Unlock your business's potential with our innovative and future-focused services. Together, we turn today's challenges into tomorrow's success stories.",
+    "imageUrl": "http://localhost:3000/uploads/Australia-1771912519851.jpg"
+  }
+}
