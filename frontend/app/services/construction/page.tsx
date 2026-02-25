@@ -119,7 +119,7 @@ const config: ServicePageConfig = {
     description:
       "Contact us today for a free consultation and quote. Let's bring your vision to life.",
     primaryButton: { text: "Get Free Quote", link: "/contact" },
-    secondaryButton: { text: "View Portfolio", link: "/portfolio" },
+    // secondaryButton: { text: "View Portfolio", link: "/portfolio" },
     image: "/littleboy.png",
   },
 };

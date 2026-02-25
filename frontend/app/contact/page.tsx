@@ -426,16 +426,10 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
-                href="/services"
+                href="/bpo"
                 className="inline-flex items-center gap-2 rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-brand/30"
               >
                 Explore Services
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 rounded-xl border border-theme bg-theme-card/50 px-8 py-4 text-base font-semibold text-theme-heading transition-all duration-300 hover:bg-theme-card hover:border-theme"
-              >
-                About Us
               </Link>
             </div>
           </AnimateOnScroll>
