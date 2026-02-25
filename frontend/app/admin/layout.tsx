@@ -20,6 +20,13 @@ export default function AdminLayout({
       .catch(() => setAuth(false));
   }, []);
 
+  // Redirect to login when not authenticated (must run in effect, not during render)
+  useEffect(() => {
+    if (auth === false && pathname !== "/admin/login") {
+      router.replace("/admin/login");
+    }
+  }, [auth, pathname, router]);
+
   if (auth === null) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-950">
@@ -33,7 +40,6 @@ export default function AdminLayout({
   }
 
   if (!auth) {
-    router.replace("/admin/login");
     return null;
   }
 

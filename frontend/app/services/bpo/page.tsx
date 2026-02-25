@@ -348,11 +348,17 @@ export default function BPOPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section: glass effect in light mode, black in dark; orbs only in light */}
       <section className="relative overflow-hidden bg-theme-muted px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        {/* Background accents */}
-        <div className="pointer-events-none absolute -left-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-purple-500/10 blur-3xl" />
+        {/* Background accents – theme-aware: colored blur in light, hidden (black) in dark */}
+        <div
+          className="pointer-events-none absolute -left-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full blur-3xl"
+          style={{ backgroundColor: "var(--cta-orb-left)" }}
+        />
+        <div
+          className="pointer-events-none absolute -right-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full blur-3xl"
+          style={{ backgroundColor: "var(--cta-orb-right)" }}
+        />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">

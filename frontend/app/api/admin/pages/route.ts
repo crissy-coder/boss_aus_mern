@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await request.json();
-  const { slug, title, type, content } = body;
+  const { slug, title, type, content, menuPlacement } = body;
   if (!slug || !title || type === undefined) {
     return NextResponse.json(
       { error: "slug, title, and type are required" },
@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
     type: type || "custom",
     updatedAt: new Date().toISOString(),
     content: content || {},
+    ...(menuPlacement !== undefined && { menuPlacement: menuPlacement || null }),
   });
   return NextResponse.json({ ok: true });
 }

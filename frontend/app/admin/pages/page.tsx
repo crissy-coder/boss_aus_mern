@@ -5,6 +5,17 @@ import Link from "next/link";
 
 type PageMeta = { slug: string; title: string; type: string; updatedAt: string };
 
+function useCopyPageLink() {
+  const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
+  const copyPageLink = (slug: string) => {
+    const url = `${typeof window !== "undefined" ? window.location.origin : ""}/${slug}`;
+    navigator.clipboard.writeText(url);
+    setCopiedSlug(slug);
+    setTimeout(() => setCopiedSlug(null), 2000);
+  };
+  return { copyPageLink, copiedSlug };
+}
+
 const EXISTING_SLUGS = [
   "home",
   "about",
@@ -26,14 +37,33 @@ const EXISTING_SLUGS = [
 export default function AdminPagesPage() {
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingSlug, setDeletingSlug] = useState<string | null>(null);
+  const { copyPageLink, copiedSlug } = useCopyPageLink();
 
-  useEffect(() => {
+  const load = () => {
+    setLoading(true);
     fetch("/api/admin/pages")
       .then((r) => r.json())
       .then(setPages)
       .catch(() => setPages([]))
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    load();
   }, []);
+
+  const deletePage = async (slug: string) => {
+    if (!confirm(`Delete page "${slug}"? This cannot be undone.`)) return;
+    setDeletingSlug(slug);
+    try {
+      const res = await fetch(`/api/admin/pages/${encodeURIComponent(slug)}`, { method: "DELETE" });
+      if (res.ok) setPages((prev) => prev.filter((p) => p.slug !== slug));
+      else alert("Failed to delete.");
+    } finally {
+      setDeletingSlug(null);
+    }
+  };
 
   const existingSet = new Set(pages.map((p) => p.slug));
   const suggested = EXISTING_SLUGS.filter((s) => !existingSet.has(s));
@@ -79,7 +109,7 @@ export default function AdminPagesPage() {
                   <p className="font-medium text-white">{p.title}</p>
                   <p className="text-sm text-zinc-500">/{p.slug} · {p.type}</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <a
                     href={`/${p.slug}`}
                     target="_blank"
@@ -88,12 +118,29 @@ export default function AdminPagesPage() {
                   >
                     View
                   </a>
+                  <button
+                    type="button"
+                    onClick={() => copyPageLink(p.slug)}
+                    className="rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                    title="Copy public page URL"
+                  >
+                    {copiedSlug === p.slug ? "Copied!" : "Copy link"}
+                  </button>
                   <Link
                     href={`/admin/pages/${encodeURIComponent(p.slug)}`}
                     className="rounded-lg bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-500"
                   >
                     Edit
                   </Link>
+                  <button
+                    type="button"
+                    onClick={() => deletePage(p.slug)}
+                    disabled={deletingSlug === p.slug}
+                    className="rounded-lg border border-red-800 px-3 py-2 text-sm text-red-400 hover:bg-red-900/30 hover:text-red-300 disabled:opacity-50"
+                    title="Delete this page"
+                  >
+                    {deletingSlug === p.slug ? "Deleting…" : "Delete"}
+                  </button>
                 </div>
               </div>
             ))

@@ -43,6 +43,7 @@ export async function PUT(
     type: body.type ?? existing?.type ?? "custom",
     updatedAt: new Date().toISOString(),
     content: body.content ?? existing?.content ?? {},
+    menuPlacement: body.menuPlacement !== undefined ? body.menuPlacement : existing?.menuPlacement,
   };
   await savePage(page);
   if (slugFinal !== decoded) {

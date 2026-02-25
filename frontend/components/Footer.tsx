@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import CmsPageLinks from "@/components/CmsPageLinks";
 
 const QUICK_LINKS = [
   { label: "Home", href: "/" },
@@ -91,6 +92,9 @@ export default function Footer() {
 
           {/* Global */}
           <FooterColumn title="Global" links={GLOBAL} />
+
+          {/* CMS pages (e.g. testingpage, news) – so users can access newly created pages */}
+          <CmsPageLinks />
         </div>
 
         {/* Bottom bar */}

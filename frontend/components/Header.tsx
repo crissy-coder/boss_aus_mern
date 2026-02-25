@@ -49,9 +49,11 @@ const NAV_LINKS = [
   { label: "About Us", href: "/about", hasDropdown: true },
   { label: "Our Services", href: "/services", hasDropdown: true },
   { label: "Global", href: "/global", hasDropdown: true },
-  { label: "News Building", href: "#", hasDropdown: false },
+  // { label: "News Building", href: "#", hasDropdown: false },
   { label: "Contact Us", href: "/contact", hasDropdown: false },
 ] as const;
+
+type CmsPageMeta = { slug: string; title: string; menuPlacement?: string | null };
 
 function Logo({ light }: { light?: boolean }) {
   return (
@@ -276,6 +278,33 @@ export default function Header() {
   const [mobileExpandedItems, setMobileExpandedItems] = useState<string[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const { theme } = useTheme();
+  const [cmsPages, setCmsPages] = useState<CmsPageMeta[]>([]);
+
+  useEffect(() => {
+    fetch("/api/cms/pages")
+      .then((r) => r.json())
+      .then((list: CmsPageMeta[]) => setCmsPages(list || []))
+      .catch(() => setCmsPages([]));
+  }, []);
+
+  const cmsMain = cmsPages.filter((p) => p.menuPlacement === "main");
+  const cmsServices = cmsPages.filter((p) => p.menuPlacement === "services");
+  const cmsGlobal = cmsPages.filter((p) => p.menuPlacement === "global");
+  const mergedDropdowns: Record<string, DropdownItem[]> = {
+    "About Us": DROPDOWN_ITEMS["About Us"] || [],
+    "Our Services": [
+      ...(DROPDOWN_ITEMS["Our Services"] || []),
+      ...cmsServices.map((p) => ({ label: p.title, href: `/${p.slug}` })),
+    ],
+    Global: [
+      ...(DROPDOWN_ITEMS["Global"] || []),
+      ...cmsGlobal.map((p) => ({ label: p.title, href: `/${p.slug}` })),
+    ],
+  };
+  const navLinksWithCms: Array<{ label: string; href: string; hasDropdown: boolean }> = [
+    ...NAV_LINKS,
+    ...cmsMain.map((p) => ({ label: p.title, href: `/${p.slug}`, hasDropdown: false })),
+  ];
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -314,7 +343,7 @@ export default function Header() {
           className="hidden lg:flex flex-1 items-center justify-center gap-8 xl:gap-12"
           aria-label="Main"
         >
-          {NAV_LINKS.map((link) => (
+          {navLinksWithCms.map((link) => (
             <div
               key={link.label}
               className="relative"
@@ -356,7 +385,7 @@ export default function Header() {
               </Link>
 
               {/* Dropdown */}
-              {link.hasDropdown && link.label in DROPDOWN_ITEMS && (
+              {link.hasDropdown && link.label in mergedDropdowns && (
                 <div
                   className={`absolute left-1/2 top-full -translate-x-1/2 pt-2 transition-all duration-200 ${
                     openDropdown === link.label
@@ -368,7 +397,7 @@ export default function Header() {
                     className="min-w-[200px] rounded-lg border border-theme bg-theme-card py-2 shadow-lg"
                     role="menu"
                   >
-                    {(DROPDOWN_ITEMS[link.label] || []).map((item) => (
+                    {(mergedDropdowns[link.label] || []).map((item) => (
                       <li
                         key={item.label}
                         role="none"
@@ -501,7 +530,7 @@ export default function Header() {
           aria-label="Mobile"
         >
           <ul className="space-y-1">
-            {NAV_LINKS.map((link) => (
+            {navLinksWithCms.map((link) => (
               <li key={link.label}>
                 <Link
                   href={link.href}
@@ -514,9 +543,9 @@ export default function Header() {
                 >
                   {link.label}
                 </Link>
-                {link.hasDropdown && link.label in DROPDOWN_ITEMS && (
+                {link.hasDropdown && link.label in mergedDropdowns && (
                   <ul className="ml-4 mt-1 space-y-1 border-l-2 border-theme pl-4">
-                    {(DROPDOWN_ITEMS[link.label] || []).map((item) => (
+                    {(mergedDropdowns[link.label] || []).map((item) => (
                       <li key={item.label}>
                         {item.children ? (
                           <>

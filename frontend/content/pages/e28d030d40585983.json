@@ -1,12 +1,30 @@
 {
   "slug": "testingpage",
   "title": "New Service Page",
-  "type": "home",
-  "updatedAt": "2026-02-24T07:16:07.639Z",
+  "type": "team",
+  "updatedAt": "2026-02-25T09:38:34.506Z",
   "content": {
-    "Heading": "New service page for testing",
-    "subheading": "this the sub heading for testting page",
+    "Heading": "Austrial Meet-up",
+    "subheading": "Summit",
     "Beyond Business  Were a People-Powered Revolution for a Better Tomorrow": "Unlock your business's potential with our innovative and future-focused services. Together, we turn today's challenges into tomorrow's success stories.",
-    "imageUrl": "http://localhost:3000/uploads/Australia-1771912519851.jpg"
-  }
+    "hero": {
+      "image": "/uploads/Australia-1771912519851.jpg"
+    },
+    "rows": [
+      {
+        "layout": "6-6",
+        "cells": [
+          {
+            "title": "Left (6/12)",
+            "text": "Left column content."
+          },
+          {
+            "title": "Right (6/12)",
+            "text": "Right column content."
+          }
+        ]
+      }
+    ]
+  },
+  "menuPlacement": "services"
 }

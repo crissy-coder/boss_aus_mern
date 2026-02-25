@@ -209,8 +209,10 @@ export default function TimelineSection() {
   const entry = TIMELINE_ENTRIES[current];
 
   return (
-    <section className="relative bg-theme-section py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-theme-section py-16 sm:py-20 lg:py-24">
+      {/* Subtle background so glass panel blur is visible in light mode */}
+      <div className="timeline-section-bg pointer-events-none absolute inset-0" aria-hidden />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-theme-heading sm:text-3xl xl:text-5xl lg:mb-14">
           Making History In {" "}
           <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
@@ -218,7 +220,7 @@ export default function TimelineSection() {
           </span>
         </h2>
 
-        <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/100 shadow-2xl">
+        <div className="glass-panel glass-panel-glass relative overflow-hidden rounded-2xl border shadow-2xl">
           {/* Slide content */}
           <div
             className="animate-timeline-in flex min-h-[420px] flex-col lg:min-h-[380px] lg:flex-row"
@@ -245,7 +247,7 @@ export default function TimelineSection() {
                 {entry.year}
               </div>
               <div className="mt-4 lg:mt-6">
-                <h3 className="text-xl font-bold text-white sm:text-2xl">
+                <h3 className="text-xl font-bold text-theme-heading sm:text-2xl">
                   {entry.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-theme-muted sm:text-base">
@@ -255,14 +257,14 @@ export default function TimelineSection() {
             </div>
           </div>
 
-          {/* Arrows - desktop */}
+          {/* Arrows - theme-aware glass style */}
           <div className="absolute bottom-6 left-4 flex gap-2 lg:left-6">
             <button
               type="button"
               aria-label="Previous"
               onClick={goPrev}
               disabled={isTransitioning}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900/90 text-white shadow-lg transition-all duration-200 hover:border-blue-500 hover:bg-blue-600 hover:text-white disabled:opacity-50"
+              className="timeline-nav-btn flex h-11 w-11 items-center justify-center rounded-xl border shadow-lg transition-all duration-200 disabled:opacity-50"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -271,7 +273,7 @@ export default function TimelineSection() {
               aria-label="Next"
               onClick={goNext}
               disabled={isTransitioning}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900/90 text-white shadow-lg transition-all duration-200 hover:border-blue-500 hover:bg-blue-600 hover:text-white disabled:opacity-50"
+              className="timeline-nav-btn flex h-11 w-11 items-center justify-center rounded-xl border shadow-lg transition-all duration-200 disabled:opacity-50"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -292,7 +294,7 @@ export default function TimelineSection() {
                   className={`flex h-10 min-w-[2.5rem] items-center justify-center rounded-lg px-3 text-sm font-bold transition-all duration-200 sm:min-w-[3rem] sm:px-4 sm:text-base ${
                     isActive
                       ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105"
-                      : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white"
+                      : "timeline-pill hover:opacity-90"
                   }`}
                 >
                   {year}
@@ -302,9 +304,9 @@ export default function TimelineSection() {
           </div>
         </div>
 
-        {/* Progress indicator */}
+        {/* Progress indicator - theme-aware */}
         <div className="mt-6 flex justify-center">
-          <div className="h-1 w-48 overflow-hidden rounded-full bg-zinc-800">
+          <div className="timeline-progress-track h-1 w-48 overflow-hidden rounded-full">
             <div
               className="h-full rounded-full bg-blue-500 transition-all duration-300 ease-out"
               style={{
