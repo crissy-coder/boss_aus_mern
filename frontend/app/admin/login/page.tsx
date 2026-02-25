@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-white placeholder-zinc-500 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-white placeholder-zinc-500 outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                 placeholder="Admin password"
                 required
               />
@@ -60,14 +60,14 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-blue-600 py-3 font-medium text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
+              className="w-full rounded-lg bg-brand py-3 font-medium text-white transition-colors hover:bg-brand-light disabled:opacity-50"
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
           </form>
-          <p className="mt-4 text-xs text-zinc-500">
+          {/* <p className="mt-4 text-xs text-zinc-500">
             On Vercel: set <code className="rounded bg-zinc-800 px-1">ADMIN_PASSWORD</code> in Project → Settings → Environment Variables.
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

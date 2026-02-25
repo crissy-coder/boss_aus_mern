@@ -89,7 +89,7 @@ export default function CmsPageView({ page }: { page: PageContent }) {
       />
 
       <section className="relative px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-dark/40 via-transparent to-brand-dark/30" />
         <div className="relative mx-auto max-w-4xl text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             {heading ?? page.title}
@@ -231,7 +231,7 @@ export default function CmsPageView({ page }: { page: PageContent }) {
           <div className="relative mx-auto max-w-2xl rounded-2xl border border-zinc-800/60 bg-zinc-900/40 p-8 text-center">
             <p className="text-zinc-400">
               This page has no content yet. Edit it in the{" "}
-              <Link href="/admin/pages" className="text-blue-400 hover:underline">
+              <Link href="/admin/pages" className="text-brand-light hover:underline">
                 admin panel
               </Link>{" "}
               and add <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">Heading</code>,{" "}

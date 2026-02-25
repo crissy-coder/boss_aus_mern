@@ -91,8 +91,8 @@ const config: ServicePageConfig = {
     title: "Ready for a Better Laundry Experience?",
     description:
       "Find your nearest BOSS Laundromat and enjoy convenient, efficient laundry services.",
-    primaryButton: { text: "Find Locations", link: "/locations" },
-    secondaryButton: { text: "Contact Us", link: "/contact" },
+    primaryButton: { text: "Find Locations", link: "/contact" },
+    // secondaryButton: { text: "Contact Us", link: "/contact" },
     image: "/littleboy.png",
   },
 };

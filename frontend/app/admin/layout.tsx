@@ -30,7 +30,7 @@ export default function AdminLayout({
   if (auth === null) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-950">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
       </div>
     );
   }
@@ -74,7 +74,7 @@ export default function AdminLayout({
               href={item.href}
               className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                 pathname === item.href
-                  ? "bg-blue-600 text-white"
+                  ? "bg-brand text-white"
                   : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
               }`}
             >

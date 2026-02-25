@@ -31,7 +31,7 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         <svg
-          className="h-5 w-5 text-indigo-600"
+          className="h-5 w-5 text-brand"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

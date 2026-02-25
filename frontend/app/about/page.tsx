@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <AnimateOnScroll>
-            <p className="mb-2 text-sm font-medium uppercase tracking-wider text-blue-500">
+            <p className="mb-2 text-sm font-medium uppercase tracking-wider text-brand">
               About us
             </p>
             <h1 className="text-3xl font-bold tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
@@ -29,7 +29,7 @@ export default function AboutPage() {
           <div className="overflow-hidden rounded-2xl bg-zinc-900/100 px-6 py-10 shadow-xl backdrop-blur-sm sm:px-10 sm:py-14">
             <div className="relative">
               {/* Accent line */}
-              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-linear-to-b from-blue-500 to-blue-700/60" />
+              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-linear-to-b from-brand to-brand-dark/60" />
 
               <div className="space-y-8 pl-6 sm:pl-8">
                 <AnimateOnScroll>
@@ -96,12 +96,12 @@ export default function AboutPage() {
             {/* Right: Who We Are text */}
             <div className="4">
               <AnimateOnScroll delay={80}>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-500">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand">
                   Who We Are
                 </p>
                 <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl lg:text-4xl">
                   Creative Agency that Help you{" "}
-                  <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-brand-light to-brand bg-clip-text text-transparent">
                   go Ahead.
               </span>
                 </h2>

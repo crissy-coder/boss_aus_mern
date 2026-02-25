@@ -26,14 +26,14 @@ const IMPACT_CARDS = [
     metric: "1M +",
     description: "Countless Lives Impacted",
     icon: "impact",
-    color: "violet",
+    color: "brand",
     featured: false,
   },
   {
     metric: "5 +",
     description: "Global operational locations",
     icon: "globe",
-    color: "violet",
+    color: "brand",
     featured: false,
   },
 ];
@@ -42,7 +42,8 @@ const ICON_COLOR_CLASS: Record<string, string> = {
   amber: "text-amber-200/90",
   orange: "text-orange-400",
   emerald: "text-emerald-400",
-  violet: "text-violet-400",
+  brand: "text-brand",
+  violet: "text-brand",
 };
 
 function IconBadge({
@@ -147,14 +148,14 @@ export default function ImpactSection() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-96 -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-96 -translate-x-1/2 rounded-full bg-brand/10 blur-3xl"
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-7xl">
         <h2 className="text-center text-2xl font-bold tracking-tight text-theme-heading sm:text-3xl xl:text-5xl">
           Not Just Numbers, But{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">
             Real Impacts
           </span>
         </h2>
@@ -163,10 +164,10 @@ export default function ImpactSection() {
           {IMPACT_CARDS.map((card, index) => (
             <article
               key={index}
-              className={`group relative overflow-hidden rounded-2xl border transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10
+              className={`group relative overflow-hidden rounded-2xl border transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-brand/10
                 ${
                   card.featured
-                    ? "border-blue-500/40 bg-white/5 backdrop-blur-xl hover:border-white/20 hover:bg-white/10"
+                    ? "border-brand/40 bg-white/5 backdrop-blur-xl hover:border-white/20 hover:bg-white/10"
                     : "border-white/10 bg-white/5 backdrop-blur-xl hover:border-white/20 hover:bg-white/10"
                 }`}
             >

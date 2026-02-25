@@ -43,7 +43,7 @@ const FINANCE_SERVICES = [
     description:
       "Regular and precise reconciliation of accounts to ensure that your financial statements are up-to-date and error-free.",
     icon: "/serviceicons/Reconciliation.png",
-    color: "from-violet-500 to-purple-600",
+    color: "from-brand to-brand-dark",
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ const FINANCE_SERVICES = [
     description:
       "Timely and efficient processing of vendor and customer invoices, reducing bottlenecks in your payment cycles.",
     icon: "/serviceicons/invoice.png",
-    color: "from-sky-500 to-blue-600",
+    color: "from-brand-light to-brand",
   },
   {
     id: 4,
@@ -75,7 +75,7 @@ const FINANCE_SERVICES = [
     description:
       "Helping you plan for the future with accurate budgeting and financial forecasting services.",
     icon: "/serviceicons/budget.png",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-brand to-brand-dark",
   },
 ];
 
@@ -115,21 +115,21 @@ export default function BPOPage() {
     <div className="min-h-screen bg-theme-muted">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-theme-muted px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/40 via-transparent to-purple-950/30" />
-        <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-dark/40 via-transparent to-brand-dark/30" />
+        <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-brand/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-brand/10 blur-3xl" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Text */}
             <div>
               <AnimateOnScroll>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-400">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-light">
                   BPO Services
                 </p>
                 <h1 className="mb-6 text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-5xl">
                   Let Us Handle the Numbers,{" "}
-                  <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-brand-light to-brand bg-clip-text text-transparent">
                     While You Focus Only on Growth!
                   </span>
                 </h1>
@@ -140,7 +140,7 @@ export default function BPOPage() {
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-brand-light hover:shadow-brand/30 hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Get Started
                 </Link>
@@ -169,8 +169,8 @@ export default function BPOPage() {
           <AnimateOnScroll>
             <div className="rounded-2xl border p-6 shadow-sm sm:p-8 lg:p-10">
             <div className="pointer-events-none absolute inset-0" />
-        {/* <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-3xl" /> */}
-        {/* <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-3xl" /> */}
+        {/* <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-brand/10 blur-3xl" /> */}
+        {/* <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-brand/10 blur-3xl" /> */}
 
               <p className="mb-4 text-base leading-relaxed text-zinc-600 sm:text-lg">
                 In Australia&apos;s hyper-competitive and fast-paced business
@@ -198,12 +198,12 @@ export default function BPOPage() {
         <div className="mx-auto max-w-7xl">
           <AnimateOnScroll>
             <div className="mb-10 lg:mb-14">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-blue-600">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-brand">
                 Human Resources
               </p>
               <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               HR {" "}  
-              <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-light bg-clip-text text-transparent">
                 Outsourcing
               </span>
             </h2>
@@ -219,9 +219,9 @@ export default function BPOPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {HR_SERVICES.map((service, idx) => (
               <AnimateOnScroll key={service.id} delay={60 + idx * 50}>
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-200/10 bg-white p-6 shadow-lg shadow-zinc-200/30 transition-all duration-300 hover:-translate-y-1 hover:border-blue-20 hover:shadow-xl sm:p-8">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-200/10 bg-white p-6 shadow-lg shadow-zinc-200/30 transition-all duration-300 hover:-translate-y-1 hover:border-brand/20 hover:shadow-xl sm:p-8">
                   {/* Icon */}
-                  <div className="relative mb-5 h-14 w-14 overflow-hidden rounded-xl bg-linear-to-br from-blue-50 to-blue-100 p-3">
+                  <div className="relative mb-5 h-14 w-14 overflow-hidden rounded-xl bg-linear-to-br from-brand/10 to-brand/20 p-3">
                     <Image
                       src={service.icon}
                       alt={service.title}
@@ -230,7 +230,7 @@ export default function BPOPage() {
                     />
                   </div>
 
-                  <h3 className="mb-3 text-lg font-semibold text-zinc-900 transition-colors group-hover:text-blue-600">
+                  <h3 className="mb-3 text-lg font-semibold text-zinc-900 transition-colors group-hover:text-brand">
                     {service.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-zinc-600">
@@ -238,7 +238,7 @@ export default function BPOPage() {
                   </p>
 
                   {/* Hover accent */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-linear-to-r from-blue-500 to-blue-400 transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-linear-to-r from-brand to-brand-light transition-all duration-500 group-hover:w-full" />
                 </div>
               </AnimateOnScroll>
             ))}
@@ -251,12 +251,12 @@ export default function BPOPage() {
         <div className="mx-auto max-w-7xl">
           <AnimateOnScroll>
             <div className="mb-10 lg:mb-14">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-blue-600">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-brand">
                 Financial Services
               </p>
               <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               Finance Operations{" "}
-              <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-light bg-clip-text text-transparent">
                 Outsourcing
               </span>
             </h2>
@@ -272,7 +272,7 @@ export default function BPOPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {FINANCE_SERVICES.map((service, idx) => (
               <AnimateOnScroll key={service.id} delay={60 + idx * 40}>
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100/10 bg-white p-6 shadow-lg shadow-zinc-200/20 transition-all duration-300 hover:-translate-y-1 hover:border-blue-20 hover:shadow-xl sm:p-8">
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100/10 bg-white p-6 shadow-lg shadow-zinc-200/20 transition-all duration-300 hover:-translate-y-1 hover:border-brand/20 hover:shadow-xl sm:p-8">
                   {/* Gradient top bar */}
                   <div
                     className={`absolute left-0 top-0 h-1 w-full bg-linear-to-r ${service.color}`}
@@ -310,7 +310,7 @@ export default function BPOPage() {
             <div className="mb-10 text-center lg:mb-14">
             <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               Why Choose {" "}  
-              <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-light bg-clip-text text-transparent">
                 BOSS BPO?
               </span>
             </h2> 
@@ -326,7 +326,7 @@ export default function BPOPage() {
               <AnimateOnScroll key={benefit.id} delay={60 + idx * 50}>
                 <div className="group flex flex-col items-center rounded-2xl border border-zinc-200/80 bg-white p-6 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   {/* Icon */}
-                  <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full bg-linear-to-br from-blue-50 to-purple-50 p-4 transition-transform duration-300 group-hover:scale-110">
+                  <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full bg-linear-to-br from-brand/10 to-brand/5 p-4 transition-transform duration-300 group-hover:scale-110">
                     <Image
                       src={benefit.icon}
                       alt={benefit.title}
@@ -365,7 +365,7 @@ export default function BPOPage() {
             {/* Left: Text & Buttons */}
             <AnimateOnScroll>
               <div className="text-center lg:text-left">
-                <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-blue-400">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-brand-light">
                   Let&apos;s Work Together
                 </p>
                 <h2 className="mb-4 text-2xl font-bold text-theme-heading sm:text-3xl lg:text-4xl">
@@ -378,7 +378,7 @@ export default function BPOPage() {
                 <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-brand-light hover:shadow-brand/30 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     Get Now
                   </Link>
@@ -390,7 +390,7 @@ export default function BPOPage() {
             <AnimateOnScroll delay={80}>
               <div className="flex justify-center lg:justify-end">
                 <div className="relative">
-                  <div className="absolute -inset-4 rounded-full bg-linear-to-br from-blue-500/20 to-purple-500/20 blur-2xl" />
+                  <div className="absolute -inset-4 rounded-full bg-linear-to-br from-brand/20 to-brand/15 blur-2xl" />
                   <img
                     src="/littleboy.png"
                     alt="CTA Illustration"

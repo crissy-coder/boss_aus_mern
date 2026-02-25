@@ -95,16 +95,16 @@ export default function TeamPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-800/20 blur-3xl" />
+        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-brand/20 blur-3xl" />
         {/* <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-800/30 blur-3xl" /> */}
       </div>
 
-        <div className="absolute inset-0 bg-linear-to-br from-zinc-900/60 via-transparent to-blue-950/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-br from-zinc-900/60 via-transparent to-brand-dark/20 pointer-events-none" />
         <div className="relative mx-auto max-w-4xl text-center">
           <AnimateOnScroll>
             <h1 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
               Leadership & {""}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">
               Management Team
               </span>
             </h1>
@@ -116,7 +116,7 @@ export default function TeamPage() {
             <div className="mt-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-brand-light hover:shadow-brand/30 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Get Started
               </Link>
@@ -158,7 +158,7 @@ export default function TeamPage() {
                             />
                           </div>
                           <div className="flex flex-1 flex-col justify-center">
-                            <p className="text-sm font-medium uppercase tracking-wider text-blue-500">
+                            <p className="text-sm font-medium uppercase tracking-wider text-brand">
                               {member.role}
                             </p>
                             <h2 className="mt-1 text-2xl font-bold text-theme-heading sm:text-3xl">
@@ -169,7 +169,7 @@ export default function TeamPage() {
                             </p>
                             <Link
                               href="/about"
-                              className="mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98]"
+                              className="mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-light hover:scale-[1.02] active:scale-[0.98]"
                             >
                               Know More
                             </Link>
@@ -197,7 +197,7 @@ export default function TeamPage() {
                           onClick={() => setIndex(i)}
                           className={`h-2 rounded-full transition-all duration-300 ${
                             i === index
-                              ? "w-8 bg-blue-500"
+                              ? "w-8 bg-brand"
                               : "w-2 bg-zinc-600 hover:bg-zinc-500"
                           }`}
                           aria-label={`Go to slide ${i + 1}`}
@@ -220,16 +220,16 @@ export default function TeamPage() {
             {/* col-4: Text */}
             <div className="lg:col-span-4 flex items-center justify-center">
             <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-800/40 blur-3xl" />
+        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-brand/40 blur-3xl" />
         {/* <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-800/30 blur-3xl" /> */}
       </div>
               <AnimateOnScroll delay={80}>
                 <div className="sticky top-28 rounded-lg border border-zinc-800/60 bg-theme-card p-6 shadow-xl backdrop-blur-sm sm:p-8">
-                  <div className="absolute left-0 top-0 h-full w-1 rounded-l-3xl bg-linear-to-b from-blue-500 to-blue-700/60" />
+                  <div className="absolute left-0 top-0 h-full w-1 rounded-l-3xl bg-linear-to-b from-brand to-brand-dark/60" />
                   <div className="pl-4 sm:pl-5">
                   <h2 className="mb-6 text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl lg:text-4xl">
                       Our {""}
-                      <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">
                       Culture
                      </span>
                     </h2>

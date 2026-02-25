@@ -74,7 +74,7 @@ export default function ServicesSection() {
           <AnimateOnScroll className="lg:col-span-6">
             <h2 className="text-2xl font-bold leading-tight tracking-tight text-theme-heading sm:text-3xl xl:text-5xl">
               Shaping Tomorrow with{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-light to-brand bg-clip-text text-transparent">
                 Our Services Today!
               </span>
             </h2>
@@ -92,7 +92,7 @@ export default function ServicesSection() {
         <div className="mt-12 grid gap-5 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           {SERVICES.map((service, index) => (
             <AnimateOnScroll key={service.title} delay={index * 50}>
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-theme bg-theme-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-blue-500/30 hover:bg-theme-card/80 hover:shadow-lg hover:shadow-blue-500/5 sm:p-7">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-theme bg-theme-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-brand/30 hover:bg-theme-card/80 hover:shadow-lg hover:shadow-brand/5 sm:p-7">
                 <div className="mb-4 transition-transform duration-300 group-hover:scale-110">
                   <ServiceIcon icon={service.icon} title={service.title} />
                 </div>

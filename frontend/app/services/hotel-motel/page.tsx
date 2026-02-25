@@ -108,7 +108,7 @@ const config: ServicePageConfig = {
     description:
       "Partner with BOSS for hospitality management that delivers results and exceeds expectations.",
     primaryButton: { text: "Get in Touch", link: "/contact" },
-    secondaryButton: { text: "Our Properties", link: "/portfolio" },
+    // secondaryButton: { text: "Our Properties", link: "/portfolio" },
     image: "/littleboy.png",
   },
 };
