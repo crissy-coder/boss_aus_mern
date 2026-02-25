@@ -193,7 +193,6 @@ export default function ImpactSection() {
                   {card.description}
                 </p>
               </div>
-              {/* Subtle inner glow on hover for non-featured */}
               {!card.featured && (
                 <div
                   className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/0 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
