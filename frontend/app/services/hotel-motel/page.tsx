@@ -29,42 +29,42 @@ const config: ServicePageConfig = {
           title: "Hotel Management",
           description:
             "Full-service hotel operations including front desk, housekeeping, and guest services management.",
-          icon: "/services/hospitality/hotel.png",
+          icon: "/serviceicons/bpo_banner.png",
         },
         {
           id: 2,
           title: "Food & Beverage",
           description:
             "Restaurant and catering operations with focus on quality, presentation, and customer satisfaction.",
-          icon: "/services/hospitality/food.png",
+          icon: "/serviceicons/iconed.png",
         },
         {
           id: 3,
           title: "Guest Relations",
           description:
             "Dedicated guest services ensuring every visitor receives personalized attention and care.",
-          icon: "/services/hospitality/guest.png",
+          icon: "/serviceicons/relation.png",
         },
         {
           id: 4,
           title: "Event Management",
           description:
             "Planning and execution of conferences, weddings, and corporate events with precision.",
-          icon: "/services/hospitality/event.png",
+          icon: "/serviceicons/recr.png",
         },
         {
           id: 5,
           title: "Revenue Management",
           description:
             "Strategic pricing and inventory optimization to maximize occupancy and revenue.",
-          icon: "/services/hospitality/revenue.png",
+          icon: "/serviceicons/bill.png",
         },
         {
           id: 6,
           title: "Quality Assurance",
           description:
             "Regular audits and training programs to maintain the highest service standards.",
-          icon: "/services/hospitality/quality.png",
+          icon: "/serviceicons/star.png",
         },
       ],
       columns: 3,
@@ -80,25 +80,25 @@ const config: ServicePageConfig = {
         id: 1,
         title: "Industry Experience",
         description: "Decades of experience managing diverse hospitality properties.",
-        icon: "/services/hospitality/experience.png",
+        icon: "/serviceicons/cons-helmet.png",
       },
       {
         id: 2,
         title: "Trained Staff",
         description: "Professional teams trained in service excellence.",
-        icon: "/services/hospitality/staff.png",
+        icon: "/serviceicons/recr.png",
       },
       {
         id: 3,
         title: "Guest Satisfaction",
         description: "Consistently high ratings and positive guest reviews.",
-        icon: "/services/hospitality/satisfaction.png",
+        icon: "/serviceicons/seating.png",
       },
       {
         id: 4,
         title: "Operational Excellence",
         description: "Efficient operations that reduce costs while improving quality.",
-        icon: "/services/hospitality/operations.png",
+        icon: "/serviceicons/puzeel.png",
       },
     ],
   },
