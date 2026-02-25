@@ -14,6 +14,7 @@ export default function AdminMediaPage() {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [copyMsg, setCopyMsg] = useState("");
+  const [deletingName, setDeletingName] = useState<string | null>(null);
 
   const load = () => {
     setLoading(true);
@@ -48,6 +49,21 @@ export default function AdminMediaPage() {
     navigator.clipboard.writeText(full);
     setCopyMsg("Copied!");
     setTimeout(() => setCopyMsg(""), 2000);
+  };
+
+  const deleteFile = async (name: string) => {
+    if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
+    setDeletingName(name);
+    try {
+      const res = await fetch(`/api/admin/media/${encodeURIComponent(name)}`, { method: "DELETE" });
+      if (res.ok) setFiles((prev) => prev.filter((f) => f.name !== name));
+      else {
+        const d = await res.json().catch(() => ({}));
+        alert(d.error || "Failed to delete.");
+      }
+    } finally {
+      setDeletingName(null);
+    }
   };
 
   const formatSize = (bytes: number) => {
@@ -108,7 +124,7 @@ export default function AdminMediaPage() {
                   {f.name}
                 </p>
                 <p className="text-xs text-zinc-500">{formatSize(f.size)}</p>
-                <div className="mt-2 flex gap-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={() => copyUrl(f.url)}
@@ -124,6 +140,15 @@ export default function AdminMediaPage() {
                   >
                     Open
                   </a>
+                  <button
+                    type="button"
+                    onClick={() => deleteFile(f.name)}
+                    disabled={deletingName === f.name}
+                    className="rounded bg-red-900/40 px-2 py-1 text-xs text-red-400 hover:bg-red-900/60 disabled:opacity-50"
+                    title="Delete this image"
+                  >
+                    {deletingName === f.name ? "Deleting…" : "Delete"}
+                  </button>
                 </div>
               </div>
             </div>

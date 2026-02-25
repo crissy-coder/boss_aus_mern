@@ -15,6 +15,20 @@
   --header-text: #0f172a;
   --section-bg: #f1f5f9;
   --page-pattern-color: rgba(15, 23, 42, 0.03);
+  /* Glass panel (timeline / CTA): light = frosted glass, dark = black */
+  --glass-panel-bg: rgba(255, 255, 255, 0.2);
+  --glass-panel-border: rgba(255, 255, 255, 0.45);
+  --glass-panel-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --cta-orb-left: rgba(59, 130, 246, 0.12);
+  --cta-orb-right: rgba(168, 85, 247, 0.12);
+  /* Timeline controls: light = glassy buttons */
+  --timeline-btn-bg: rgba(255, 255, 255, 0.6);
+  --timeline-btn-border: rgba(226, 232, 240, 0.9);
+  --timeline-btn-text: #0f172a;
+  --timeline-btn-hover-bg: rgba(241, 245, 249, 0.9);
+  --timeline-pill-bg: rgba(226, 232, 240, 0.8);
+  --timeline-pill-text: #475569;
+  --timeline-progress-bg: rgba(226, 232, 240, 0.6);
 }
 
 /* Dark theme - user choice or system preference when no choice */
@@ -32,6 +46,18 @@
   --header-text: #fafafa;
   --section-bg: #09090b;
   --page-pattern-color: rgba(255, 255, 255, 0.04);
+  --glass-panel-bg: #09090b;
+  --glass-panel-border: #27272a;
+  --glass-panel-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --cta-orb-left: transparent;
+  --cta-orb-right: transparent;
+  --timeline-btn-bg: rgba(24, 24, 27, 0.9);
+  --timeline-btn-border: #3f3f46;
+  --timeline-btn-text: #fafafa;
+  --timeline-btn-hover-bg: rgba(63, 63, 70, 0.95);
+  --timeline-pill-bg: #27272a;
+  --timeline-pill-text: #a1a1aa;
+  --timeline-progress-bg: #27272a;
 }
 
 /* System preference fallback when data-theme not yet set (avoids flash) */
@@ -50,6 +76,18 @@
     --header-text: #fafafa;
     --section-bg: #09090b;
     --page-pattern-color: rgba(255, 255, 255, 0.04);
+    --glass-panel-bg: #09090b;
+    --glass-panel-border: #27272a;
+    --glass-panel-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --cta-orb-left: transparent;
+    --cta-orb-right: transparent;
+    --timeline-btn-bg: rgba(24, 24, 27, 0.9);
+    --timeline-btn-border: #3f3f46;
+    --timeline-btn-text: #fafafa;
+    --timeline-btn-hover-bg: rgba(63, 63, 70, 0.95);
+    --timeline-pill-bg: #27272a;
+    --timeline-pill-text: #a1a1aa;
+    --timeline-progress-bg: #27272a;
   }
 }
 
@@ -72,6 +110,40 @@ body {
 .bg-theme-card { background-color: var(--card); }
 .bg-theme-section { background-color: var(--section-bg); }
 .border-theme { border-color: var(--card-border); }
+/* Glass panel: light = frosted glass, dark = solid black */
+.glass-panel {
+  background: var(--glass-panel-bg);
+  border-color: var(--glass-panel-border);
+  box-shadow: var(--glass-panel-shadow);
+}
+.glass-panel-glass { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+/* Timeline section: nav buttons and year pills – theme-aware */
+.timeline-nav-btn {
+  background: var(--timeline-btn-bg);
+  border-color: var(--timeline-btn-border);
+  color: var(--timeline-btn-text);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.timeline-nav-btn:hover:not(:disabled) {
+  background: var(--timeline-btn-hover-bg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.timeline-pill {
+  background: var(--timeline-pill-bg);
+  color: var(--timeline-pill-text);
+}
+.timeline-pill:hover { opacity: 0.9; }
+.timeline-progress-track { background: var(--timeline-progress-bg); }
+/* Timeline section: subtle gradient so glass panel blur is visible (light only) */
+.timeline-section-bg {
+  background: linear-gradient(to bottom right, rgba(239, 246, 255, 0.5), transparent 40%, transparent 60%, rgba(250, 245, 255, 0.4));
+}
+[data-theme="dark"] .timeline-section-bg { background: transparent; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .timeline-section-bg { background: transparent; }
+}
 .theme-toggle-btn:hover { background: var(--page-pattern-color); }
 .placeholder-theme::placeholder { color: var(--muted); opacity: 1; }
 .placeholder\:text-theme-muted::placeholder { color: var(--muted); opacity: 1; }

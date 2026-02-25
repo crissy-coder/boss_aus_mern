@@ -9,8 +9,17 @@ type PageContent = {
   title: string;
   type: string;
   updatedAt: string;
+  menuPlacement?: string | null;
   content: Record<string, unknown>;
 };
+
+const MENU_PLACEMENTS = [
+  { value: "", label: "Footer only (default)" },
+  { value: "main", label: "Main navigation (top bar)" },
+  { value: "services", label: "Under Our Services dropdown" },
+  { value: "global", label: "Under Global dropdown" },
+  { value: "footer", label: "Footer – More pages" },
+] as const;
 
 const TYPES = [
   { value: "custom", label: "Custom" },
@@ -29,8 +38,10 @@ export default function AdminEditPagePage() {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [type, setType] = useState("custom");
+  const [menuPlacement, setMenuPlacement] = useState("");
   const [contentJson, setContentJson] = useState("{}");
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -44,6 +55,7 @@ export default function AdminEditPagePage() {
           setPage(p);
           setTitle(p.title);
           setType(p.type);
+          setMenuPlacement(p.menuPlacement ?? "");
           setContentJson(JSON.stringify(p.content, null, 2));
         })
         .catch(() => setPage(null))
@@ -68,7 +80,7 @@ export default function AdminEditPagePage() {
       const res = await fetch(`/api/admin/pages/${encodeURIComponent(slug)}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, title, type, content }),
+        body: JSON.stringify({ slug, title, type, content, menuPlacement: menuPlacement || null }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
@@ -85,6 +97,21 @@ export default function AdminEditPagePage() {
       setError("Request failed");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!confirm(`Delete page "${slug}"? This cannot be undone.`)) return;
+    setDeleting(true);
+    try {
+      const res = await fetch(`/api/admin/pages/${encodeURIComponent(slug)}`, { method: "DELETE" });
+      if (res.ok) router.replace("/admin/pages");
+      else {
+        const d = await res.json().catch(() => ({}));
+        setError(d.error || "Failed to delete");
+      }
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -163,6 +190,19 @@ export default function AdminEditPagePage() {
           </select>
         </div>
         <div>
+          <label className="mb-2 block text-sm font-medium text-zinc-300">Show in menu</label>
+          <select
+            value={menuPlacement}
+            onChange={(e) => setMenuPlacement(e.target.value)}
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-white"
+          >
+            {MENU_PLACEMENTS.map((p) => (
+              <option key={p.value} value={p.value}>{p.label}</option>
+            ))}
+          </select>
+          <p className="mt-1 text-xs text-zinc-500">Where this page link appears: header (main nav or under Services/Global) or footer.</p>
+        </div>
+        <div>
           <label className="mb-2 block text-sm font-medium text-zinc-300">Content (JSON)</label>
           <textarea
             value={contentJson}
@@ -170,15 +210,26 @@ export default function AdminEditPagePage() {
             rows={16}
             className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 font-mono text-sm text-white placeholder-zinc-500"
           />
+          <p className="mt-1 text-xs text-zinc-500">
+            Optional row/column layouts: use <code className="rounded bg-zinc-800 px-1">rows</code> with <code className="rounded bg-zinc-800 px-1">layout</code> (e.g. &quot;6-6&quot;, &quot;8-4&quot;, &quot;4-4-4&quot;) and <code className="rounded bg-zinc-800 px-1">cells</code> (title, text, image). See docs.
+          </p>
         </div>
         {error && <p className="text-sm text-red-400">{error}</p>}
-        <div className="flex gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <button
             type="submit"
             disabled={saving}
             className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white hover:bg-blue-500 disabled:opacity-50"
           >
             {saving ? "Saving..." : "Save changes"}
+          </button>
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={deleting || saving}
+            className="rounded-lg border border-red-800 px-6 py-2 font-medium text-red-400 hover:bg-red-900/30 disabled:opacity-50"
+          >
+            {deleting ? "Deleting…" : "Delete page"}
           </button>
         </div>
       </form>

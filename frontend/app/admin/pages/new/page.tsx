@@ -12,6 +12,14 @@ const TYPES = [
   { value: "service", label: "Service" },
 ];
 
+const MENU_PLACEMENTS = [
+  { value: "", label: "Footer only (default)" },
+  { value: "main", label: "Main navigation (top bar)" },
+  { value: "services", label: "Under Our Services dropdown" },
+  { value: "global", label: "Under Global dropdown" },
+  { value: "footer", label: "Footer – More pages" },
+] as const;
+
 export default function AdminNewPagePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -19,6 +27,7 @@ export default function AdminNewPagePage() {
   const [slug, setSlug] = useState(presetSlug);
   const [title, setTitle] = useState("");
   const [type, setType] = useState("custom");
+  const [menuPlacement, setMenuPlacement] = useState("");
   const [contentJson, setContentJson] = useState("{}");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -43,6 +52,7 @@ export default function AdminNewPagePage() {
           title: title || "Untitled",
           type,
           content,
+          menuPlacement: menuPlacement || null,
         }),
       });
       if (!res.ok) {
@@ -95,6 +105,19 @@ export default function AdminNewPagePage() {
               <option key={t.value} value={t.value}>{t.label}</option>
             ))}
           </select>
+        </div>
+        <div>
+          <label className="mb-2 block text-sm font-medium text-zinc-300">Show in menu</label>
+          <select
+            value={menuPlacement}
+            onChange={(e) => setMenuPlacement(e.target.value)}
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-white"
+          >
+            {MENU_PLACEMENTS.map((p) => (
+              <option key={p.value} value={p.value}>{p.label}</option>
+            ))}
+          </select>
+          <p className="mt-1 text-xs text-zinc-500">Choose where this page link appears: header (main nav or under Services/Global) or footer.</p>
         </div>
         <div>
           <label className="mb-2 block text-sm font-medium text-zinc-300">Content (JSON)</label>

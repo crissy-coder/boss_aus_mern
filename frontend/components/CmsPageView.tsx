@@ -34,6 +34,25 @@ export default function CmsPageView({ page }: { page: PageContent }) {
   const body = content.body as string | undefined;
   const sections = content.sections as Array<{ title?: string; text?: string }> | undefined;
 
+  /** Row/column layouts: rows[].layout = "6-6" | "8-4" | "4-4-4" | "12" etc (spans out of 12), rows[].cells = [{ title?, text?, image? }, ...] */
+  const rows = content.rows as Array<{
+    layout?: string;
+    cells?: Array<{ title?: string; text?: string; image?: string }>;
+  }> | undefined;
+  const layoutRows = Array.isArray(rows)
+    ? rows.filter((r) => r && Array.isArray(r.cells) && r.cells.length > 0)
+    : [];
+
+  // Parse "6-6" or "8-4" -> [6, 6] or [8, 4]; must sum to 12
+  function parseLayout(layout: string | undefined): number[] {
+    if (!layout || typeof layout !== "string") return [12];
+    const parts = layout.trim().split(/[-,\s]+/).map((s) => parseInt(s, 10)).filter((n) => !Number.isNaN(n) && n > 0);
+    if (parts.length === 0) return [12];
+    const sum = parts.reduce((a, b) => a + b, 0);
+    if (sum !== 12) return [12];
+    return parts;
+  }
+
   // Support common custom keys: Heading, heading, subheading, Subheading
   const heading =
     hero?.title ??
@@ -45,16 +64,16 @@ export default function CmsPageView({ page }: { page: PageContent }) {
     (content.Subheading as string | undefined);
 
   // Any other top-level string fields (for simple custom content)
+  const reservedKeys = ["hero", "body", "sections", "rows", "Heading", "heading", "subheading", "Subheading"];
   const customFields = Object.entries(content).filter(
-    ([key]) =>
-      !["hero", "body", "sections", "Heading", "heading", "subheading", "Subheading"].includes(key) &&
-      typeof content[key] === "string"
+    ([key]) => !reservedKeys.includes(key) && typeof content[key] === "string"
   );
   const hasContent =
     heading ||
     subheading ||
     body ||
     (sections && sections.length > 0) ||
+    layoutRows.length > 0 ||
     customFields.length > 0 ||
     hero?.image;
 
@@ -94,9 +113,9 @@ export default function CmsPageView({ page }: { page: PageContent }) {
         </div>
       </section>
 
-      {(body || (sections && sections.length > 0) || customFields.length > 0) && (
+      {(body || (sections && sections.length > 0) || layoutRows.length > 0 || customFields.length > 0) && (
         <section className="relative px-4 py-12 sm:px-6 lg:px-8">
-          <div className="relative mx-auto max-w-3xl">
+          <div className="relative mx-auto max-w-6xl">
             {body && (
               <div className="prose prose-invert max-w-none rounded-2xl border border-zinc-800/60 bg-zinc-900/40 p-6 sm:p-8">
                 <p className="whitespace-pre-wrap text-zinc-300">{String(body)}</p>
@@ -123,6 +142,71 @@ export default function CmsPageView({ page }: { page: PageContent }) {
                 ))}
               </div>
             )}
+
+            {/* Row/column layouts: layout "6-6", "8-4", "4-4-4" etc (spans out of 12) */}
+            {layoutRows.length > 0 && (
+              <div className="mt-10 space-y-8">
+                {layoutRows.map((row, rowIdx) => {
+                  const spans = parseLayout(row.layout);
+                  const cells = row.cells ?? [];
+                  return (
+                    <div
+                      key={rowIdx}
+                      className="grid grid-cols-12 gap-4 sm:gap-6"
+                    >
+                      {cells.slice(0, spans.length).map((cell, cellIdx) => {
+                        const span = Math.min(spans[cellIdx] ?? 12, 12);
+                        const spanClassMap: Record<number, string> = {
+                          1: "col-span-12 sm:col-span-1",
+                          2: "col-span-12 sm:col-span-2",
+                          3: "col-span-12 sm:col-span-3",
+                          4: "col-span-12 sm:col-span-4",
+                          5: "col-span-12 sm:col-span-5",
+                          6: "col-span-12 sm:col-span-6",
+                          7: "col-span-12 sm:col-span-7",
+                          8: "col-span-12 sm:col-span-8",
+                          9: "col-span-12 sm:col-span-9",
+                          10: "col-span-12 sm:col-span-10",
+                          11: "col-span-12 sm:col-span-11",
+                          12: "col-span-12",
+                        };
+                        const spanClass = spanClassMap[span] ?? "col-span-12";
+                        return (
+                        <div
+                          key={cellIdx}
+                          className={`min-w-0 rounded-2xl border border-zinc-800/60 bg-zinc-900/40 p-6 sm:p-8 ${spanClass}`}
+                        >
+                          <div>
+                            {cell.image && (
+                              <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-xl border border-zinc-800">
+                                <Image
+                                  src={String(cell.image)}
+                                  alt=""
+                                  fill
+                                  className="object-cover"
+                                  sizes="(max-width: 640px) 100vw, 50vw"
+                                />
+                              </div>
+                            )}
+                            {cell.title && (
+                              <h2 className="mb-2 text-xl font-semibold text-white">
+                                {String(cell.title)}
+                              </h2>
+                            )}
+                            {cell.text && (
+                              <p className="whitespace-pre-wrap text-zinc-400">
+                                {String(cell.text)}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      ); })}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
             {customFields.length > 0 && (
               <div className="mt-10 space-y-4">
                 {customFields.map(([key, value]) => (
@@ -151,11 +235,9 @@ export default function CmsPageView({ page }: { page: PageContent }) {
                 admin panel
               </Link>{" "}
               and add <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">Heading</code>,{" "}
-              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">subheading</code>,{" "}
-              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">body</code>, or{" "}
-              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">hero</code> /{" "}
-              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">sections</code> in the
-              content JSON.
+              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">body</code>,{" "}
+              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">sections</code>, or{" "}
+              <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-sm">rows</code> (row/column layouts like 6-6, 8-4) in the content JSON.
             </p>
           </div>
         </section>

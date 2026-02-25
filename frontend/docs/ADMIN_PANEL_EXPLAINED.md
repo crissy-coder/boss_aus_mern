@@ -148,6 +148,132 @@ So: **Next.js only** (no Nest), **data = JSON + files**, **create = write new JS
 
 ---
 
+## How to use admin content on the website & get links
+
+### When does a CMS page appear on the site?
+
+- **Any page you create** in Admin → Pages is **viewable at `/{slug}`** on the **public site** – but only if that path is not already taken by a built-in route.
+- **Built-in routes** (these are coded in the app and **cannot** be replaced by a CMS page):  
+  `/`, `/about`, `/contact`, `/team`, `/services/bpo`, `/services/construction`, etc.  
+  So a CMS page with slug `about` will **not** show at `/about`; the static About page will.
+- **CMS-only URLs** (no built-in page): use any **other** slug, e.g. `news`, `testingpage`, `blog`, `our-story`, `faq`. Those URLs are handled by the catch-all route and **will** show your CMS page.
+
+**Summary:** Create a page with a **new** slug (e.g. `news` or `our-story`) → it appears at **`https://your-site.com/news`** or **`https://your-site.com/our-story`**.
+
+**How users find it:** When creating or editing a page, choose **Show in menu**:
+
+- **Footer only (default)** – Link appears in the site footer under **“More pages”**.
+- **Main navigation** – Link appears in the header top bar (next to Home, About Us, etc.).
+- **Under Our Services dropdown** – Link appears inside the **Our Services** dropdown in the header.
+- **Under Global dropdown** – Link appears inside the **Global** dropdown in the header.
+- **Footer – More pages** – Same as default; link only in the footer.
+
+So the admin can place each new page in the header (main bar, Services submenu, or Global submenu) or leave it in the footer only.
+
+### Where to get links in the admin panel
+
+| What you want | Where to get it |
+|---------------|------------------|
+| **Link to a CMS page on the site** | **Admin → Pages** → each row has **View** (opens the page) and **Copy link** (copies the full public URL, e.g. `https://yoursite.com/news`). Use that URL in your main nav, footer, or anywhere on the site. |
+| **Link to an uploaded image** | **Admin → Media** → each image has **Copy URL**. That gives the full image URL (e.g. `https://yoursite.com/uploads/myimage-123.png`). Paste it into a page’s **Content (JSON)** when editing a page, e.g. in `hero.image` or any field that expects an image URL. |
+
+### How to “insert” admin content into the website
+
+1. **New CMS page**
+   - Admin → Pages → **+ New page** → set **Slug** (e.g. `news`), **Title**, **Type**, **Content (JSON)** → **Create page**.
+   - The page is live at **`/news`**. Add that link in your header/footer (e.g. in `components/Header.tsx` or `components/Footer.tsx`) so users can open it.
+
+2. **Use an uploaded image in a page**
+   - Admin → Media → upload image → click **Copy URL**.
+   - Admin → Pages → Edit the page → in **Content (JSON)** put that URL in the right field, e.g. `"hero": { "image": "/uploads/myimage-123.png" }` or `"image": "https://yoursite.com/uploads/..."`.
+   - Save. The next time someone opens that CMS page, the image will show.
+
+3. **Link from the main site to a CMS page**
+   - In your code (e.g. `Header.tsx`, `Footer.tsx`), add a link: `<Link href="/news">News</Link>` (use the slug you created).
+   - Or copy the public URL from Admin → Pages (**Copy link**) and use it in buttons, emails, or external menus.
+
+### Row/column layouts (6/12, 8/4, etc.)
+
+You can define **rows** with column splits so the page renders in a grid (e.g. two 6/12 columns, or 8/12 + 4/12). In the page **Content (JSON)** add a `rows` array. Each row has:
+
+- **layout** – string of column widths out of 12, separated by `-` or `,`. Examples: `"6-6"` (two equal columns), `"8-4"` (two-thirds + one-third), `"4-4-4"` (three columns), `"12"` (full width). The numbers must sum to 12.
+- **cells** – array of blocks, one per column. Each cell can have **title**, **text**, and **image** (URL).
+
+Example:
+
+```json
+{
+  "Heading": "Our Team",
+  "rows": [
+    {
+      "layout": "6-6",
+      "cells": [
+        { "title": "Left", "text": "Left column content." },
+        { "title": "Right", "text": "Right column content." }
+      ]
+    },
+    {
+      "layout": "8-4",
+      "cells": [
+        { "title": "Main", "text": "Main content...", "image": "/uploads/photo.jpg" },
+        { "title": "Side", "text": "Sidebar or note." }
+      ]
+    }
+  ]
+}
+```
+
+On small screens, columns stack to full width. Supported splits: any combination that sums to 12 (e.g. 6-6, 8-4, 4-8, 4-4-4, 3-3-3-3, 5-7, 9-3).
+
+**Full example: heading, description, hero image, then a row with 6/12 + 6/12 or 8/12 + 4/12**
+
+Copy this into **Content (JSON)** when creating or editing a page (replace image URLs with your own from Admin → Media → Copy URL):
+
+```json
+{
+  "Heading": "About Our Services",
+  "subheading": "A short description that appears under the main heading.",
+  "hero": {
+    "title": "About Our Services",
+    "description": "Optional hero description.",
+    "image": "/uploads/your-image.jpg"
+  },
+  "rows": [
+    {
+      "layout": "6-6",
+      "cells": [
+        {
+          "title": "Left column (6/12)",
+          "text": "This column takes half the row. Add your text or use an image below.",
+          "image": "/uploads/left-photo.jpg"
+        },
+        {
+          "title": "Right column (6/12)",
+          "text": "The other half. You can mix title, text, and image in each cell."
+        }
+      ]
+    },
+    {
+      "layout": "8-4",
+      "cells": [
+        {
+          "title": "Main content (8/12)",
+          "text": "Wider column for main content. Two-thirds of the row."
+        },
+        {
+          "title": "Sidebar (4/12)",
+          "text": "Narrow column for a sidebar or highlights."
+        }
+      ]
+    }
+  ]
+}
+```
+
+Result on the page: a hero section with heading, description, and image; then a row of two equal columns (6/12 + 6/12); then a row with 8/12 + 4/12.
+
+---
+
 ## Deploying to Vercel – admin login
 
 **.env.local is not deployed.** Vercel does not upload gitignored files, so `ADMIN_PASSWORD` from `.env.local` is **not** available in production. The API then falls back to the default password `admin123`, so your real password (e.g. `Boss@1234`) will not work.

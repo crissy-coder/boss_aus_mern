@@ -11,11 +11,16 @@ function slugToFileId(slug: string): string {
   return createHash("sha256").update(slug).digest("hex").slice(0, 16);
 }
 
+/** Where to show this page in the site menu (admin choice). */
+export type MenuPlacement = "main" | "services" | "global" | "footer" | null;
+
 export type PageMeta = {
   slug: string;
   title: string;
   type: "home" | "about" | "contact" | "team" | "service" | "custom";
   updatedAt: string;
+  /** Optional: show in header (main nav / Our Services / Global) or footer only. */
+  menuPlacement?: MenuPlacement;
 };
 
 export type PageContent = PageMeta & {
@@ -81,6 +86,7 @@ export async function savePage(page: PageContent): Promise<void> {
     title: page.title,
     type: page.type,
     updatedAt: new Date().toISOString(),
+    ...(page.menuPlacement !== undefined && { menuPlacement: page.menuPlacement }),
   };
   if (existing >= 0) {
     list[existing] = meta;
@@ -157,4 +163,15 @@ export async function saveUpload(file: File): Promise<MediaFile> {
     mime: file.type,
     uploadedAt: stat.mtime.toISOString(),
   };
+}
+
+/** Delete an uploaded file by its name (must be a single filename, no path). */
+export async function deleteMedia(name: string): Promise<void> {
+  const base = path.basename(name);
+  if (base !== name || base.includes("..")) {
+    throw new Error("Invalid file name");
+  }
+  await ensureDirs();
+  const filePath = path.join(UPLOADS_DIR, base);
+  await fs.unlink(filePath);
 }
