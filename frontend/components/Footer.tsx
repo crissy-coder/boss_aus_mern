@@ -11,7 +11,7 @@ const QUICK_LINKS = [
 ];
 
 const OUR_SERVICES = [
-  { label: "BPO", href: "/bpo" },
+  { label: "BPO", href: "/services/bpo" },
   { label: "Construction", href: "/services/construction" },
   { label: "Laundromats", href: "/services/laundromats" },
   // { label: "Container Line", href: "/services/container-line" },
@@ -58,7 +58,7 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm text-theme-muted transition-colors hover:text-theme-heading"
+              className="text-sm font-semibold text-theme-muted transition-colors hover:text-theme-heading"
             >
               {link.label}
             </Link>
