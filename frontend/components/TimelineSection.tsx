@@ -215,7 +215,7 @@ export default function TimelineSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-theme-heading sm:text-3xl xl:text-5xl lg:mb-14">
           Making History In {" "}
-          <span className="bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-brand-light to-brand bg-clip-text text-transparent">
           Our Industry
           </span>
         </h2>
@@ -241,7 +241,7 @@ export default function TimelineSection() {
             {/* Text block */}
             <div className="flex flex-1 flex-col justify-center px-6 py-8 sm:px-8 lg:py-10">
               <div
-                className="text-5xl font-black leading-none text-blue-500 sm:text-6xl lg:text-7xl"
+                className="text-5xl font-black leading-none text-brand sm:text-6xl lg:text-7xl"
                 style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
               >
                 {entry.year}
@@ -293,7 +293,7 @@ export default function TimelineSection() {
                   onClick={() => goTo(index)}
                   className={`flex h-10 min-w-[2.5rem] items-center justify-center rounded-lg px-3 text-sm font-bold transition-all duration-200 sm:min-w-[3rem] sm:px-4 sm:text-base ${
                     isActive
-                      ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105"
+                      ? "bg-brand text-white shadow-lg shadow-brand/30 scale-105"
                       : "timeline-pill hover:opacity-90"
                   }`}
                 >
@@ -308,7 +308,7 @@ export default function TimelineSection() {
         <div className="mt-6 flex justify-center">
           <div className="timeline-progress-track h-1 w-48 overflow-hidden rounded-full">
             <div
-              className="h-full rounded-full bg-blue-500 transition-all duration-300 ease-out"
+              className="h-full rounded-full bg-brand transition-all duration-300 ease-out"
               style={{
                 width: `${((current + 1) / total) * 100}%`,
               }}

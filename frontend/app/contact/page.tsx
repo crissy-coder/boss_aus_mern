@@ -150,18 +150,18 @@ export default function ContactPage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-32">
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-blue-950/50 via-transparent to-purple-950/40" />
-        <div className="pointer-events-none absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-purple-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-brand-dark/50 via-transparent to-brand-dark/40" />
+        <div className="pointer-events-none absolute -left-40 top-20 h-[500px] w-[500px] rounded-full bg-brand/20 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-brand/20 blur-3xl" />
 
         <div className="relative mx-auto max-w-4xl text-center">
           <AnimateOnScroll>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-blue-400">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-brand-light">
               Get in Touch
             </p>
             <h1 className="mb-6 text-4xl font-bold tracking-tight text-theme-heading sm:text-5xl lg:text-6xl">
               Let&apos;s Start a{" "}
-              <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand-light to-brand bg-clip-text text-transparent">
                 Conversation
               </span>
             </h1>
@@ -199,7 +199,7 @@ export default function ContactPage() {
                           value={form.name}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
                           placeholder="John Doe"
                         />
                       </div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                           value={form.email}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
                           placeholder="john@example.com"
                         />
                       </div>
@@ -231,7 +231,7 @@ export default function ContactPage() {
                           name="phone"
                           value={form.phone}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
                           placeholder="+61 400 000 000"
                         />
                       </div>
@@ -245,7 +245,7 @@ export default function ContactPage() {
                           value={form.subject}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="w-full rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
                         >
                           <option value="">Select a subject</option>
                           <option value="general">General Inquiry</option>
@@ -268,7 +268,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="w-full resize-none rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                        className="w-full resize-none rounded-xl border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/20"
                         placeholder="Tell us about your project or inquiry..."
                       />
                     </div>
@@ -276,7 +276,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="group w-full rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-blue-500/30 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="group w-full rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-brand/30 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {status === "loading" ? (
                         <span className="flex items-center justify-center gap-2">
@@ -310,9 +310,9 @@ export default function ContactPage() {
             <div className="space-y-6 lg:col-span-2">
               {CONTACT_INFO.map((info, idx) => (
                 <AnimateOnScroll key={info.id} delay={60 + idx * 40}>
-                  <div className="group overflow-hidden rounded-xl border border-theme bg-theme-card p-5 backdrop-blur-md transition-all duration-300 hover:border-blue-500/40 hover:bg-theme-card/80">
+                  <div className="group overflow-hidden rounded-xl border border-theme bg-theme-card p-5 backdrop-blur-md transition-all duration-300 hover:border-brand/40 hover:bg-theme-card/80">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-blue-500/20 to-purple-500/20 text-blue-400 transition-colors group-hover:from-blue-500/30 group-hover:to-purple-500/30">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-brand/20 to-brand/15 text-brand-light transition-colors group-hover:from-brand/30 group-hover:to-brand/25">
                         <IconComponent name={info.icon} />
                       </div>
                       <div>
@@ -335,7 +335,7 @@ export default function ContactPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-(--page-pattern-color) text-theme-muted transition-all duration-200 hover:bg-blue-500/20 hover:text-blue-400"
+                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-(--page-pattern-color) text-theme-muted transition-all duration-200 hover:bg-brand/20 hover:text-brand-light"
                         aria-label={social.name}
                       >
                         <IconComponent name={social.icon} />
@@ -356,7 +356,7 @@ export default function ContactPage() {
             <div className="mb-10 text-center">
               <h2 className="mb-3 text-2xl font-bold text-theme-heading sm:text-3xl">
                 Frequently Asked{" "}
-                <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-brand-light to-brand bg-clip-text text-transparent">
                   Questions
                 </span>
               </h2>
@@ -374,8 +374,8 @@ export default function ContactPage() {
                   <div
                     className={`overflow-hidden rounded-xl border border-theme backdrop-blur-md transition-all duration-300 ${
                       isOpen
-                        ? "border-blue-500/50 bg-theme-card/80"
-                        : "bg-theme-card/50 hover:border-blue-500/30"
+                        ? "border-brand/50 bg-theme-card/80"
+                        : "bg-theme-card/50 hover:border-brand/30"
                     }`}
                   >
                     <button
@@ -383,13 +383,13 @@ export default function ContactPage() {
                       onClick={() => setOpenFaq(isOpen ? null : faq.id)}
                       className="flex w-full items-center justify-between px-6 py-5 text-left"
                     >
-                      <span className={`font-medium ${isOpen ? "text-blue-400" : "text-theme-heading"}`}>
+                      <span className={`font-medium ${isOpen ? "text-brand-light" : "text-theme-heading"}`}>
                         {faq.question}
                       </span>
                       <span
                         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-lg transition-all duration-300 ${
                           isOpen
-                            ? "bg-blue-500 text-white"
+                            ? "bg-brand text-white"
                             : "bg-(--page-pattern-color) text-theme-muted"
                         }`}
                       >
@@ -415,7 +415,7 @@ export default function ContactPage() {
 
       {/* CTA Section */}
       <section className="relative border-t border-theme px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-blue-950/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-brand-dark/20 to-transparent" />
         <div className="relative mx-auto max-w-4xl text-center">
           <AnimateOnScroll>
             <h2 className="mb-4 text-2xl font-bold text-theme-heading sm:text-3xl">
@@ -427,7 +427,7 @@ export default function ContactPage() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-blue-500/30"
+                className="inline-flex items-center gap-2 rounded-xl bg-(--accent) px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-(--accent-hover) hover:shadow-brand/30"
               >
                 Explore Services
               </Link>

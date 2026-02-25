@@ -131,7 +131,7 @@ export default function AdminNewPagePage() {
         </div>
         {error && <p className="text-sm text-red-400">{error}</p>}
         <div className="flex gap-4">
-          <button type="submit" disabled={saving} className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white hover:bg-blue-500 disabled:opacity-50">
+          <button type="submit" disabled={saving} className="rounded-lg bg-brand px-6 py-2 font-medium text-white hover:bg-brand-light disabled:opacity-50">
             {saving ? "Creating..." : "Create page"}
           </button>
           <button type="button" onClick={() => router.back()} className="rounded-lg border border-zinc-700 px-6 py-2 text-zinc-300 hover:bg-zinc-800">

@@ -118,7 +118,7 @@ export default function AdminEditPagePage() {
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
       </div>
     );
   }
@@ -127,7 +127,7 @@ export default function AdminEditPagePage() {
     return (
       <div>
         <p className="text-zinc-400">Page not found.</p>
-        <Link href="/admin/pages" className="mt-4 inline-block text-blue-400 hover:underline">
+        <Link href="/admin/pages" className="mt-4 inline-block text-brand-light hover:underline">
           ← Back to pages
         </Link>
       </div>
@@ -219,7 +219,7 @@ export default function AdminEditPagePage() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-lg bg-blue-600 px-6 py-2 font-medium text-white hover:bg-blue-500 disabled:opacity-50"
+            className="rounded-lg bg-brand px-6 py-2 font-medium text-white hover:bg-brand-light disabled:opacity-50"
           >
             {saving ? "Saving..." : "Save changes"}
           </button>

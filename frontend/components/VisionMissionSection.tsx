@@ -79,8 +79,8 @@ export default function VisionMissionSection() {
     <section className="relative overflow-hidden bg-theme-section px-4 py-16 sm:px-6 sm:py-10 lg:px-8 lg:pb-24">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl" />
+        <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-brand/10 blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-brand/10 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl">
@@ -89,7 +89,7 @@ export default function VisionMissionSection() {
           <AnimateOnScroll>
             <h2 className="text-3xl font-bold leading-tight tracking-tight text-theme-heading sm:text-4xl lg:text-[2.75rem]">
               An Award Winning Sector{" "}
-              <span className="bg-linear-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-light bg-clip-text text-transparent">
                 Beyond Vision
               </span>
             </h2>
@@ -108,17 +108,17 @@ export default function VisionMissionSection() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           {PILLARS.map((pillar, idx) => (
             <AnimateOnScroll key={pillar.id} delay={80 + idx * 60}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100/20 bg-theme-card p-6 shadow-lg shadow-zinc-200/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-blue-200/20 hover:shadow-xl hover:shadow-blue-100/10 sm:p-8">
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100/20 bg-theme-card p-6 shadow-lg shadow-zinc-200/10 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand/20 hover:shadow-xl hover:shadow-brand/10 sm:p-8">
                 {/* Hover gradient overlay */}
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-blue-50/0 via-blue-50/0 to-blue-100/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-br from-brand/0 via-brand/0 to-brand/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Icon */}
-                <div className="relative mb-5 inline-flex items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-blue-600 p-3 text-white shadow-md shadow-blue-500/30 transition-transform duration-300 group-hover:scale-105">
+                <div className="relative mb-5 inline-flex items-center justify-center rounded-xl bg-linear-to-br from-brand to-brand-dark p-3 text-white shadow-md shadow-brand/30 transition-transform duration-300 group-hover:scale-105">
                   {pillar.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="relative mb-3 text-xl font-semibold text-theme-heading transition-colors duration-300 group-hover:text-blue-600">
+                <h3 className="relative mb-3 text-xl font-semibold text-theme-heading transition-colors duration-300 group-hover:text-brand">
                   {pillar.title}
                 </h3>
 
@@ -128,7 +128,7 @@ export default function VisionMissionSection() {
                 </p>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 rounded-b-2xl bg-linear-to-r from-blue-500 to-blue-400 transition-all duration-500 group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-1 w-0 rounded-b-2xl bg-linear-to-r from-brand to-brand-light transition-all duration-500 group-hover:w-full" />
               </div>
             </AnimateOnScroll>
           ))}

@@ -74,7 +74,7 @@ export default function AdminPagesPage() {
         <h1 className="text-2xl font-bold text-white">Pages</h1>
         <Link
           href="/admin/pages/new"
-          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500"
+          className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-light"
         >
           + New page
         </Link>
@@ -82,7 +82,7 @@ export default function AdminPagesPage() {
 
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
         </div>
       ) : (
         <div className="space-y-4">
@@ -94,7 +94,7 @@ export default function AdminPagesPage() {
               </p>
               <Link
                 href="/admin/pages/new"
-                className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-500"
+                className="mt-4 inline-block rounded-lg bg-brand px-4 py-2 text-sm text-white hover:bg-brand-light"
               >
                 Create first page
               </Link>
@@ -128,7 +128,7 @@ export default function AdminPagesPage() {
                   </button>
                   <Link
                     href={`/admin/pages/${encodeURIComponent(p.slug)}`}
-                    className="rounded-lg bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-500"
+                    className="rounded-lg bg-brand px-3 py-2 text-sm text-white hover:bg-brand-light"
                   >
                     Edit
                   </Link>

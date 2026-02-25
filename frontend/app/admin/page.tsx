@@ -29,7 +29,7 @@ export default function AdminDashboardPage() {
           <p className="mt-2 text-3xl font-bold text-white">{pages.length}</p>
           <Link
             href="/admin/pages"
-            className="mt-4 inline-block text-sm font-medium text-blue-400 hover:text-blue-300"
+            className="mt-4 inline-block text-sm font-medium text-brand-light hover:text-brand"
           >
             Manage pages →
           </Link>
@@ -39,7 +39,7 @@ export default function AdminDashboardPage() {
           <p className="mt-2 text-3xl font-bold text-white">{mediaCount}</p>
           <Link
             href="/admin/media"
-            className="mt-4 inline-block text-sm font-medium text-blue-400 hover:text-blue-300"
+            className="mt-4 inline-block text-sm font-medium text-brand-light hover:text-brand"
           >
             Manage media →
           </Link>
@@ -49,7 +49,7 @@ export default function AdminDashboardPage() {
           <div className="mt-4 space-y-2">
             <Link
               href="/admin/pages/new"
-              className="block rounded-lg bg-blue-600/20 px-4 py-2 text-sm font-medium text-blue-400 hover:bg-blue-600/30"
+              className="block rounded-lg bg-brand/20 px-4 py-2 text-sm font-medium text-brand-light hover:bg-brand/30"
             >
               + New page
             </Link>

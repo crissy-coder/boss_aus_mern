@@ -7,8 +7,8 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden bg-theme-section px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
       {/* Subtle gradient overlay - theme-aware */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--section-bg)] via-transparent to-blue-950/20 pointer-events-none opacity-80" />
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--section-bg)] via-transparent to-brand-dark/20 pointer-events-none opacity-80" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand/10 to-transparent pointer-events-none" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-16">
         {/* Left Column - Text Content */}
@@ -17,7 +17,7 @@ export default function HeroSection() {
             Beyond Business, We&apos;re a{" "}
             <span className="block text-theme-heading">People-Powered</span>
             <span className="block text-theme-heading">Revolution for a Better</span>
-            <span className="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand to-brand-dark bg-clip-text text-transparent">
               Tomorrow!
             </span>
           </h1>
@@ -28,7 +28,7 @@ export default function HeroSection() {
           <div className="animate-fade-up flex justify-center lg:justify-start [animation-delay:200ms] [animation-fill-mode:both]">
             <Link
               href="/about"
-              className="group inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-blue-600/25 transition-all duration-300 hover:bg-[var(--accent-hover)] hover:shadow-blue-500/30 hover:scale-[1.02] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-xl bg-[var(--accent)] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition-all duration-300 hover:bg-[var(--accent-hover)] hover:shadow-brand/30 hover:scale-[1.02] active:scale-[0.98]"
             >
               Explore More
               <svg

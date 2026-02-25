@@ -59,7 +59,7 @@ function Logo({ light }: { light?: boolean }) {
   return (
     <Link
       href="/"
-      className={`flex flex-col items-center gap-0.5 transition-opacity hover:opacity-90 ${light ? "[&_path]:fill-blue-400 [&_.logo-text]:text-blue-400" : ""}`}
+      className={`flex flex-col items-center gap-0.5 transition-opacity hover:opacity-90 ${light ? "[&_path]:fill-brand [&_.logo-text]:text-brand" : ""}`}
     >
       {/* Stylized BO graphic */}
       <div className="flex items-center">

@@ -8,9 +8,9 @@
   --muted: #475569;
   --card: #ffffff;
   --card-border: #e2e8f0;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
-  --focus-ring: #6366f1;
+  --accent: #003792;
+  --accent-hover: #0044b3;
+  --focus-ring: #003792;
   --header-bg: rgba(255, 255, 255, 0.95);
   --header-text: #0f172a;
   --section-bg: #f1f5f9;
@@ -19,8 +19,8 @@
   --glass-panel-bg: rgba(255, 255, 255, 0.2);
   --glass-panel-border: rgba(255, 255, 255, 0.45);
   --glass-panel-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  --cta-orb-left: rgba(59, 130, 246, 0.12);
-  --cta-orb-right: rgba(168, 85, 247, 0.12);
+  --cta-orb-left: rgba(0, 55, 146, 0.12);
+  --cta-orb-right: rgba(0, 55, 146, 0.08);
   /* Timeline controls: light = glassy buttons */
   --timeline-btn-bg: rgba(255, 255, 255, 0.6);
   --timeline-btn-border: rgba(226, 232, 240, 0.9);
@@ -39,9 +39,9 @@
   --muted: #a1a1aa;
   --card: #18181b;
   --card-border: #27272a;
-  --accent: #818cf8;
-  --accent-hover: #a5b4fc;
-  --focus-ring: #818cf8;
+  --accent: #003792;
+  --accent-hover: #0044b3;
+  --focus-ring: #003792;
   --header-bg: rgba(9, 9, 11, 0.95);
   --header-text: #fafafa;
   --section-bg: #09090b;
@@ -69,9 +69,9 @@
     --muted: #a1a1aa;
     --card: #18181b;
     --card-border: #27272a;
-    --accent: #818cf8;
-    --accent-hover: #a5b4fc;
-    --focus-ring: #818cf8;
+    --accent: #003792;
+    --accent-hover: #0044b3;
+    --focus-ring: #003792;
     --header-bg: rgba(9, 9, 11, 0.95);
     --header-text: #fafafa;
     --section-bg: #09090b;
@@ -94,6 +94,23 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: #003792;
+  --color-brand-light: #0044b3;
+  --color-brand-dark: #002a66;
+  /* Override Tailwind blue/purple so any remaining blue-* / purple-* use brand */
+  --color-blue-400: #0044b3;
+  --color-blue-500: #003792;
+  --color-blue-600: #003792;
+  --color-blue-700: #002a66;
+  --color-blue-800: #002a66;
+  --color-blue-950: #001a40;
+  --color-purple-400: #003792;
+  --color-purple-500: #003792;
+  --color-purple-600: #002a66;
+  --color-purple-950: #001a40;
+  --color-indigo-600: #003792;
+  --color-violet-400: #003792;
+  --color-violet-500: #003792;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -138,7 +155,7 @@ body {
 .timeline-progress-track { background: var(--timeline-progress-bg); }
 /* Timeline section: subtle gradient so glass panel blur is visible (light only) */
 .timeline-section-bg {
-  background: linear-gradient(to bottom right, rgba(239, 246, 255, 0.5), transparent 40%, transparent 60%, rgba(250, 245, 255, 0.4));
+  background: linear-gradient(to bottom right, rgba(0, 55, 146, 0.06), transparent 40%, transparent 60%, rgba(0, 55, 146, 0.05));
 }
 [data-theme="dark"] .timeline-section-bg { background: transparent; }
 @media (prefers-color-scheme: dark) {
