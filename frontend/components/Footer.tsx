@@ -11,12 +11,12 @@ const QUICK_LINKS = [
 ];
 
 const OUR_SERVICES = [
-  { label: "BPO", href: "/services#bpo" },
-  { label: "Construction", href: "/services#construction" },
-  { label: "Laundromats", href: "/services#laundromats" },
-  { label: "Container Line", href: "/services#container-line" },
-  { label: "Hotel Motel", href: "/services#hotel-motel" },
-  { label: "Real Estate", href: "/services#real-estate" },
+  { label: "BPO", href: "/bpo" },
+  { label: "Construction", href: "/services/construction" },
+  { label: "Laundromats", href: "/services/laundromats" },
+  // { label: "Container Line", href: "/services/container-line" },
+  { label: "Hotel Motel", href: "/services/hotel-motel" },
+  // { label: "Real Estate", href: "/services/real-estate" },
 ];
 
 const GLOBAL = [
