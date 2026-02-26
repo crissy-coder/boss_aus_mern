@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "slug": "fuel_service",
+    "title": "new fule",
+    "type": "custom",
+    "updatedAt": "2026-02-26T08:41:13.700Z",
+    "menuPlacement": "main"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "slug": "fuel_service",
+  "title": "new fule",
+  "type": "custom",
+  "updatedAt": "2026-02-26T08:41:13.689Z",
+  "content": {
+    "Heading": "Austrial Meet-up",
+    "subheading": "Summit",
+    "Beyond Business  Were a People-Powered Revolution for a Better Tomorrow": "Unlock your business's potential with our innovative and future-focused services. Together, we turn today's challenges into tomorrow's success stories.",
+    "hero": {
+      "image": "/uploads/Australia-1771912519851.jpg"
+    },
+    "rows": [
+      {
+        "layout": "6-6",
+        "cells": [
+          {
+            "title": "Left (6/12)",
+            "text": "Left column content."
+          },
+          {
+            "title": "Right (6/12)",
+            "text": "Right column content."
+          }
+        ]
+      }
+    ]
+  },
+  "menuPlacement": "main"
+}
