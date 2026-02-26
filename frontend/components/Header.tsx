@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTheme } from "@/components/ThemeProvider";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type DropdownChild = {
   label: string;
@@ -353,7 +354,7 @@ export default function Header() {
             >
               <Link
                 href={link.href}
-                className={`group relative flex items-center gap-1 py-2 text-sm font-semibold tracking-wide transition-colors duration-200
+                className={`group relative flex items-center gap-1 py-2 text-sm font-medium tracking-wide transition-colors duration-200
                   ${
                     theme === "dark"
                       ? isActive(link.href)
@@ -469,13 +470,15 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Options: Search (Desktop) - theme toggle is fixed on right */}
+        {/* Options: Theme + Search (Desktop) - icons follow theme */}
         <div className="hidden lg:flex shrink-0 items-center gap-1">
+          <ThemeToggle />
           <SearchIcon darkBackground={theme === "dark"} onClick={() => setSearchOpen(true)} />
         </div>
 
-        {/* Mobile: Search + Hamburger - theme toggle is fixed on right */}
+        {/* Mobile: Theme + Search + Hamburger */}
         <div className="flex lg:hidden shrink-0 items-center gap-2">
+          <ThemeToggle />
           <SearchIcon darkBackground={theme === "dark"} onClick={() => setSearchOpen(true)} />
           <button
             type="button"
@@ -531,7 +534,7 @@ export default function Header() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className={`block rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                     isActive(link.href)
                       ? "bg-(--page-pattern-color) text-theme-heading"
                       : "text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"

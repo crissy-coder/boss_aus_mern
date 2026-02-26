@@ -4,7 +4,6 @@ import "./globals.css";
 import SiteLayout from "@/components/SiteLayout";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ThemeScript from "@/components/ThemeScript";
-import FixedThemeToggle from "@/components/FixedThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +33,6 @@ export default function RootLayout({
         <ThemeScript />
         <ThemeProvider>
           <SiteLayout>{children}</SiteLayout>
-          <FixedThemeToggle />
         </ThemeProvider>
       </body>
     </html>
