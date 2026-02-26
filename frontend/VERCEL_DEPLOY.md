@@ -2,6 +2,29 @@
 
 This Next.js app lives in the **`frontend`** folder. The repo root does not contain `package.json`, so you must tell Vercel to use `frontend` as the project root.
 
+## 1. Set root directory
+
+1. Open your project on [vercel.com](https://vercel.com).
+2. Go to **Settings** → **General**.
+3. Under **Root Directory**, click **Edit**, enter **`frontend`** (no leading slash), then **Save**.
+
+## 2. Environment variables
+
+In Vercel: **Settings** → **Environment Variables**. Add these (for Production, Preview, and Development as needed):
+
+| Name | Description | Where to get it |
+|------|-------------|-----------------|
+| `ADMIN_PASSWORD` | Admin CMS login password | Choose a strong password |
+| `DATABASE_URL` | Neon Postgres connection string | Vercel → Storage → Postgres, or [Neon Console](https://console.neon.tech) → Connection string (pooled) |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob token for CMS uploads | Vercel → Storage → Blob → your store → **.env.local** tab |
+
+After adding or changing env vars, **redeploy** (Deployments → … → Redeploy) so the new values are used.
+
+## 3. Database and Blob setup
+
+- **Neon:** Ensure the `cms_pages` table exists. Run `frontend/scripts/init-cms-pages.sql` in the Neon SQL Editor if you haven’t already.
+- **Blob:** Create a Blob store in Vercel (Storage → Create Database → Blob) and copy its `BLOB_READ_WRITE_TOKEN` into the project’s env vars.
+
 ## Fix: "No Next.js version detected"
 
 1. Open your project on [vercel.com](https://vercel.com).

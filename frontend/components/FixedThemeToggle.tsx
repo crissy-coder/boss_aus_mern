@@ -11,7 +11,7 @@ export default function FixedThemeToggle() {
     setMounted(true);
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // initial check
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

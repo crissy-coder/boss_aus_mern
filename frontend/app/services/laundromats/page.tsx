@@ -28,28 +28,28 @@ const config: ServicePageConfig = {
           title: "Coin-Operated Machines",
           description:
             "Prefer a hands-on approach? Our easy-to-use coin-operated washers and dryers are available in various sizes to accommodate any load, from a few items to large batches. Enjoy the flexibility to do your laundry on your own terms.",
-          icon: "/serviceicons/machine.png",
+          icon: "/services/education/vocational.png",
         },
         {
           id: 2,
           title: "Auto Soap and Softener Dispensing",
           description:
             "Experience the ultimate convenience with our auto soap and softener dispensing system. Our machines are equipped to automatically dispense the right amount of detergent and fabric softener for each load, ensuring optimal cleaning without the hassle. Just load your laundry, select your settings, and let us take care of the rest!",
-          icon: "/serviceicons/bluck-lundary.png",
+          icon: "/services/education/corporate.png",
         },
         {
           id: 3,
           title: "Laundromats",
           description:
             "Forgot your detergent but want to add your own? No worries! Our laundromats are fully stocked with essential laundry supplies, including detergents, fabric softeners, and dryer sheets. Grab what you need while you’re here and make laundry day effortless!",
-          icon: "/serviceicons/supply.png",
+          icon: "/services/education/professional.png",
         },
         {
           id: 4,
           title: "Bulk Laundry",
           description:
             "Have a large load to wash? Our laundromats are equipped to handle bulk laundry with ease. Whether it’s bedding, towels, or a week’s worth of clothes, we’ve got the capacity to get the job done efficiently and effectively.",
-          icon: "/serviceicons/basket.png",
+          icon: "/services/education/online.png",
         },
       ],
       columns: 2,

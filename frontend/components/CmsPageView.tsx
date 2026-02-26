@@ -27,25 +27,7 @@ export default function CmsPageView({ page }: { page: PageContent }) {
   const { content, type } = page;
 
   if (type === "service" && isServiceConfig(content as ServicePageConfig)) {
-    const raw = content as Record<string, unknown>;
-    const heroRaw = (raw.hero as Record<string, unknown> | null) ?? {};
-    const serviceConfig: ServicePageConfig = {
-      hero: {
-        label: (heroRaw.label as string) ?? "",
-        title: (heroRaw.title as string) ?? (raw.Heading as string) ?? page.title,
-        highlight: (heroRaw.highlight as string) ?? "",
-        description: (heroRaw.description as string) ?? (raw.subheading as string) ?? "",
-        image: (heroRaw.image as string) ?? "",
-        ctaText: heroRaw.ctaText as string | undefined,
-        ctaLink: heroRaw.ctaLink as string | undefined,
-      },
-      intro: raw.intro as ServicePageConfig["intro"],
-      sections: Array.isArray(raw.sections) ? (raw.sections as ServicePageConfig["sections"]) : [],
-      accordion: raw.accordion as ServicePageConfig["accordion"],
-      benefits: raw.benefits as ServicePageConfig["benefits"],
-      cta: raw.cta as ServicePageConfig["cta"],
-    };
-    return <ServicePageTemplate config={serviceConfig} />;
+    return <ServicePageTemplate config={content as ServicePageConfig} />;
   }
 
   const hero = content.hero as { title?: string; description?: string; image?: string } | undefined;
