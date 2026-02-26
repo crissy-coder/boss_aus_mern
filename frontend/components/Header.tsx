@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTheme } from "@/components/ThemeProvider";
-import ThemeToggle from "@/components/ThemeToggle";
 
 type DropdownChild = {
   label: string;
@@ -470,15 +469,13 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Options: Theme + Search (Desktop) - icons follow theme */}
+        {/* Options: Search (Desktop) - theme toggle fixed on right */}
         <div className="hidden lg:flex shrink-0 items-center gap-1">
-          <ThemeToggle />
           <SearchIcon darkBackground={theme === "dark"} onClick={() => setSearchOpen(true)} />
         </div>
 
-        {/* Mobile: Theme + Search + Hamburger */}
+        {/* Mobile: Search + Hamburger - theme toggle fixed on right */}
         <div className="flex lg:hidden shrink-0 items-center gap-2">
-          <ThemeToggle />
           <SearchIcon darkBackground={theme === "dark"} onClick={() => setSearchOpen(true)} />
           <button
             type="button"
