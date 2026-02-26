@@ -1,8 +1,8 @@
 {
-  "slug": "testingpage",
-  "title": "New Service Page",
-  "type": "team",
-  "updatedAt": "2026-02-25T09:38:34.506Z",
+  "slug": "fuel_service",
+  "title": "new fule",
+  "type": "custom",
+  "updatedAt": "2026-02-26T08:41:13.689Z",
   "content": {
     "Heading": "Austrial Meet-up",
     "subheading": "Summit",
@@ -26,5 +26,5 @@
       }
     ]
   },
-  "menuPlacement": "services"
+  "menuPlacement": "main"
 }
