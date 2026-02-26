@@ -205,7 +205,7 @@ export default function ServicePageTemplate({
 }: {
   config: ServicePageConfig;
 }) {
-  const { hero, intro, sections, accordion, benefits, cta } = config;
+  const { hero, intro, sections = [], accordion, benefits, cta } = config;
 
   return (
     <div className="min-h-screen bg-theme-section">
