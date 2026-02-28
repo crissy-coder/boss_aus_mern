@@ -17,6 +17,13 @@ In Vercel: **Settings** → **Environment Variables**. Add these (for Production
 | `ADMIN_PASSWORD` | Admin CMS login password | Choose a strong password |
 | `DATABASE_URL` | Neon Postgres connection string | Vercel → Storage → Postgres, or [Neon Console](https://console.neon.tech) → Connection string (pooled) |
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob token for CMS uploads | Vercel → Storage → Blob → your store → **.env.local** tab |
+| `SMTP_HOST` | SMTP server (e.g. `smtp.gmail.com`) | Your email provider |
+| `SMTP_PORT` | Usually `587` or `465` | `587` for TLS |
+| `SMTP_SECURE` | `true` for 465, else `false` | `false` for port 587 |
+| `SMTP_USER` | SMTP login (often your email) | Your email |
+| `SMTP_PASS` | SMTP password (Gmail: use [App Password](https://myaccount.google.com/apppasswords)) | App Password for Gmail |
+| `MAIL_FROM` | “From” address | Your email or noreply@… |
+| `MAIL_TO` | Where contact form emails are sent | e.g. info@yourdomain.com |
 
 After adding or changing env vars, **redeploy** (Deployments → … → Redeploy) so the new values are used.
 

@@ -71,7 +71,7 @@ export default function AdminPagesPage() {
   return (
     <div>
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">Pages</h1>
+        <h1 className="text-2xl font-bold text-theme-heading">Pages</h1>
         <Link
           href="/admin/pages/new"
           className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-light"
@@ -87,9 +87,9 @@ export default function AdminPagesPage() {
       ) : (
         <div className="space-y-4">
           {pages.length === 0 ? (
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-8 text-center">
-              <p className="text-zinc-400">No pages in CMS yet.</p>
-              <p className="mt-2 text-sm text-zinc-500">
+            <div className="rounded-xl border border-theme bg-theme-card p-8 text-center">
+              <p className="text-theme-muted">No pages in CMS yet.</p>
+              <p className="mt-2 text-sm text-theme-muted">
                 Create a page to manage content, or your site uses hardcoded content from the codebase.
               </p>
               <Link
@@ -103,25 +103,25 @@ export default function AdminPagesPage() {
             pages.map((p) => (
               <div
                 key={p.slug}
-                className="flex items-center justify-between rounded-xl border border-zinc-800 bg-zinc-900/50 px-6 py-4"
+                className="flex items-center justify-between rounded-xl border border-theme bg-theme-card px-6 py-4"
               >
                 <div>
-                  <p className="font-medium text-white">{p.title}</p>
-                  <p className="text-sm text-zinc-500">/{p.slug} · {p.type}</p>
+                  <p className="font-medium text-theme-heading">{p.title}</p>
+                  <p className="text-sm text-theme-muted">/{p.slug} · {p.type}</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <a
                     href={`/${p.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                    className="rounded-lg border border-theme px-3 py-2 text-sm text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
                   >
                     View
                   </a>
                   <button
                     type="button"
                     onClick={() => copyPageLink(p.slug)}
-                    className="rounded-lg border border-zinc-700 px-3 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                    className="rounded-lg border border-theme px-3 py-2 text-sm text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
                     title="Copy public page URL"
                   >
                     {copiedSlug === p.slug ? "Copied!" : "Copy link"}
@@ -146,9 +146,9 @@ export default function AdminPagesPage() {
             ))
           )}
           {suggested.length > 0 && (
-            <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-              <h2 className="mb-3 text-sm font-semibold text-zinc-400">Import existing routes as CMS pages</h2>
-              <p className="mb-4 text-xs text-zinc-500">
+            <div className="mt-8 rounded-xl border border-theme bg-theme-card p-6">
+              <h2 className="mb-3 text-sm font-semibold text-theme-muted">Import existing routes as CMS pages</h2>
+              <p className="mb-4 text-xs text-theme-muted">
                 These slugs match your app routes. Create a CMS page to override content.
               </p>
               <div className="flex flex-wrap gap-2">
@@ -156,7 +156,7 @@ export default function AdminPagesPage() {
                   <Link
                     key={slug}
                     href={`/admin/pages/new?slug=${encodeURIComponent(slug)}`}
-                    className="rounded-lg bg-zinc-800 px-3 py-2 text-sm text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                    className="rounded-lg bg-theme-card px-3 py-2 text-sm text-theme-heading hover:bg-(--page-pattern-color)"
                   >
                     + {slug}
                   </Link>

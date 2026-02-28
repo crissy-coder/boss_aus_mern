@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function AdminLayout({
   children,
@@ -29,7 +30,7 @@ export default function AdminLayout({
 
   if (auth === null) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950">
+      <div className="flex min-h-screen items-center justify-center bg-theme-section">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
       </div>
     );
@@ -63,10 +64,11 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950">
-      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-zinc-800 bg-zinc-900">
-        <div className="flex h-16 items-center gap-2 border-b border-zinc-800 px-6">
-          <span className="text-lg font-bold text-white">BOSS CMS</span>
+    <div className="min-h-screen bg-theme-section">
+      <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r border-theme bg-theme-card">
+        <div className="flex h-16 items-center justify-between gap-2 border-b border-theme px-6">
+          <span className="text-lg font-bold text-theme-heading">BOSS CMS</span>
+          <ThemeToggle />
         </div>
         <nav className="space-y-1 p-4">
           {nav.map((item) => (
@@ -76,25 +78,25 @@ export default function AdminLayout({
               className={`block rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                 pathname === item.href
                   ? "bg-brand text-white"
-                  : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                  : "text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
               }`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="absolute bottom-0 left-0 right-0 border-t border-zinc-800 p-4">
+        <div className="absolute bottom-0 left-0 right-0 border-t border-theme p-4">
           <Link
             href="/"
             target="_blank"
-            className="mb-2 block rounded-lg px-4 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+            className="mb-2 block rounded-lg px-4 py-2 text-sm text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
           >
             View site →
           </Link>
           <button
             type="button"
             onClick={logout}
-            className="w-full rounded-lg px-4 py-2 text-left text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+            className="w-full rounded-lg px-4 py-2 text-left text-sm text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
           >
             Logout
           </button>

@@ -28,11 +28,11 @@ export default function AdminDashboardPage() {
 
   return (
     <div>
-      <h1 className="mb-8 text-2xl font-bold text-white">Dashboard</h1>
+      <h1 className="mb-8 text-2xl font-bold text-theme-heading">Dashboard</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700">
-          <p className="text-sm font-medium text-zinc-400">Pages</p>
-          <p className="mt-2 text-3xl font-bold text-white">{pages.length}</p>
+        <div className="rounded-xl border border-theme bg-theme-card p-6 transition-all hover:border-theme">
+          <p className="text-sm font-medium text-theme-muted">Pages</p>
+          <p className="mt-2 text-3xl font-bold text-theme-heading">{pages.length}</p>
           <Link
             href="/admin/pages"
             className="mt-4 inline-block text-sm font-medium text-brand-light hover:text-brand"
@@ -40,9 +40,9 @@ export default function AdminDashboardPage() {
             Manage pages →
           </Link>
         </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700">
-          <p className="text-sm font-medium text-zinc-400">Media files</p>
-          <p className="mt-2 text-3xl font-bold text-white">{mediaCount}</p>
+        <div className="rounded-xl border border-theme bg-theme-card p-6 transition-all hover:border-theme">
+          <p className="text-sm font-medium text-theme-muted">Media files</p>
+          <p className="mt-2 text-3xl font-bold text-theme-heading">{mediaCount}</p>
           <Link
             href="/admin/media"
             className="mt-4 inline-block text-sm font-medium text-brand-light hover:text-brand"
@@ -50,10 +50,10 @@ export default function AdminDashboardPage() {
             Manage media →
           </Link>
         </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700">
-          <p className="text-sm font-medium text-zinc-400">Contact submissions</p>
-          <p className="mt-2 text-3xl font-bold text-white">{contactCounts?.total ?? "—"}</p>
-          <p className="mt-1 text-xs text-zinc-500">
+        <div className="rounded-xl border border-theme bg-theme-card p-6 transition-all hover:border-theme">
+          <p className="text-sm font-medium text-theme-muted">Contact submissions</p>
+          <p className="mt-2 text-3xl font-bold text-theme-heading">{contactCounts?.total ?? "—"}</p>
+          <p className="mt-1 text-xs text-theme-muted">
             {contactCounts != null ? `${contactCounts.thisWeek} this week · ${contactCounts.thisMonth} this month` : ""}
           </p>
           <Link
@@ -63,8 +63,8 @@ export default function AdminDashboardPage() {
             View all →
           </Link>
         </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-          <p className="text-sm font-medium text-zinc-400">Quick actions</p>
+        <div className="rounded-xl border border-theme bg-theme-card p-6">
+          <p className="text-sm font-medium text-theme-muted">Quick actions</p>
           <div className="mt-4 space-y-2">
             <Link
               href="/admin/pages/new"
@@ -74,7 +74,7 @@ export default function AdminDashboardPage() {
             </Link>
             <Link
               href="/admin/media"
-              className="block rounded-lg bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-300 hover:bg-zinc-700"
+              className="block rounded-lg bg-theme-card px-4 py-2 text-sm font-medium text-theme-heading hover:bg-(--page-pattern-color)"
             >
               Upload image
             </Link>
@@ -83,16 +83,16 @@ export default function AdminDashboardPage() {
       </div>
       {pages.length > 0 && (
         <div className="mt-10">
-          <h2 className="mb-4 text-lg font-semibold text-white">Recent pages</h2>
+          <h2 className="mb-4 text-lg font-semibold text-theme-heading">Recent pages</h2>
           <ul className="space-y-2">
             {pages.slice(0, 5).map((p) => (
               <li key={p.slug}>
                 <Link
                   href={`/admin/pages/${encodeURIComponent(p.slug)}`}
-                  className="flex items-center justify-between rounded-lg border border-zinc-800 px-4 py-3 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:text-white"
+                  className="flex items-center justify-between rounded-lg border border-theme bg-theme-card px-4 py-3 text-theme-heading hover:border-theme hover:bg-(--page-pattern-color)"
                 >
                   <span>{p.title}</span>
-                  <span className="text-xs text-zinc-500">{p.type}</span>
+                  <span className="text-xs text-theme-muted">{p.type}</span>
                 </Link>
               </li>
             ))}

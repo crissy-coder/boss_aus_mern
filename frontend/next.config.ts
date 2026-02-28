@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "dev.mirakitech.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+        pathname: "/**",
+      },
     ],
   },
 

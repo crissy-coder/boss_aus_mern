@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState, Fragment } from "react";
+import { useTheme } from "@/components/ThemeProvider";
 import {
   AreaChart,
   Area,
@@ -41,7 +42,14 @@ function toYYYYMMDD(d: Date) {
 }
 
 export default function AdminContactPage() {
+  const { theme } = useTheme();
   const [counts, setCounts] = useState<Counts | null>(null);
+  const isDark = theme === "dark";
+  const chartGrid = isDark ? "rgb(39 39 42)" : "rgb(226 232 240)";
+  const chartTick = isDark ? "#71717a" : "#64748b";
+  const tooltipBg = isDark ? "#27272a" : "#ffffff";
+  const tooltipBorder = isDark ? "#3f3f46" : "#e2e8f0";
+  const tooltipLabel = isDark ? "#a1a1aa" : "#475569";
   const [chartData, setChartData] = useState<ChartPoint[]>([]);
   const [items, setItems] = useState<Submission[]>([]);
   const [total, setTotal] = useState(0);
@@ -133,26 +141,26 @@ export default function AdminContactPage() {
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-2xl font-bold text-white">Contact submissions</h1>
+        <h1 className="text-2xl font-bold text-theme-heading">Contact submissions</h1>
         <div className="flex flex-wrap items-center gap-3">
           <input
             type="date"
             value={from}
             onChange={(e) => setFrom(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-800/80 px-3 py-2 text-sm text-white"
+            className="rounded-lg border border-theme bg-theme-card px-3 py-2 text-sm text-theme-heading"
           />
-          <span className="text-zinc-500">to</span>
+          <span className="text-theme-muted">to</span>
           <input
             type="date"
             value={to}
             onChange={(e) => setTo(e.target.value)}
-            className="rounded-lg border border-zinc-700 bg-zinc-800/80 px-3 py-2 text-sm text-white"
+            className="rounded-lg border border-theme bg-theme-card px-3 py-2 text-sm text-theme-heading"
           />
           <button
             type="button"
             onClick={exportCsv}
             disabled={exporting || total === 0}
-            className="rounded-lg bg-zinc-700 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-600 disabled:opacity-50"
+            className="rounded-lg bg-theme-card px-4 py-2 text-sm font-medium text-theme-heading transition-colors hover:bg-(--page-pattern-color) disabled:opacity-50"
           >
             {exporting ? "Exporting…" : "Export CSV"}
           </button>
@@ -168,10 +176,10 @@ export default function AdminContactPage() {
         ].map((card) => (
           <div
             key={card.label}
-            className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-5 transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900/80"
+            className="rounded-xl border border-theme bg-theme-card p-5 transition-all duration-200 hover:border-theme"
           >
-            <p className="text-sm font-medium text-zinc-400">{card.label}</p>
-            <p className="mt-1 text-2xl font-bold text-white tabular-nums">
+            <p className="text-sm font-medium text-theme-muted">{card.label}</p>
+            <p className="mt-1 text-2xl font-bold text-theme-heading tabular-nums">
               {card.value}
             </p>
           </div>
@@ -179,8 +187,8 @@ export default function AdminContactPage() {
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 transition-all hover:border-zinc-700">
-        <p className="mb-4 text-sm font-medium text-zinc-400">
+      <div className="rounded-xl border border-theme bg-theme-card p-4 transition-all">
+        <p className="mb-4 text-sm font-medium text-theme-muted">
           Submissions over time
         </p>
         <div className="h-64 w-full">
@@ -204,26 +212,26 @@ export default function AdminContactPage() {
                 </defs>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="rgb(39 39 42)"
+                  stroke={chartGrid}
                   vertical={false}
                 />
                 <XAxis
                   dataKey="date"
-                  tick={{ fill: "#71717a", fontSize: 11 }}
+                  tick={{ fill: chartTick, fontSize: 11 }}
                   tickFormatter={(v) => formatDateShort(v)}
                 />
                 <YAxis
                   allowDecimals={false}
-                  tick={{ fill: "#71717a", fontSize: 11 }}
+                  tick={{ fill: chartTick, fontSize: 11 }}
                   width={28}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#27272a",
-                    border: "1px solid #3f3f46",
+                    backgroundColor: tooltipBg,
+                    border: `1px solid ${tooltipBorder}`,
                     borderRadius: "8px",
                   }}
-                  labelStyle={{ color: "#a1a1aa" }}
+                  labelStyle={{ color: tooltipLabel }}
                   formatter={(value: number) => [value, "Submissions"]}
                   labelFormatter={(label) => formatDateShort(label)}
                 />
@@ -240,7 +248,7 @@ export default function AdminContactPage() {
               </AreaChart>
             </ResponsiveContainer>
           ) : (
-            <div className="flex h-full items-center justify-center text-zinc-500">
+            <div className="flex h-full items-center justify-center text-theme-muted">
               No data in this range
             </div>
           )}
@@ -248,9 +256,9 @@ export default function AdminContactPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
-        <div className="border-b border-zinc-800 px-4 py-3">
-          <p className="text-sm font-medium text-zinc-400">
+      <div className="rounded-xl border border-theme bg-theme-card overflow-hidden">
+        <div className="border-b border-theme px-4 py-3">
+          <p className="text-sm font-medium text-theme-muted">
             {total} submission{total !== 1 ? "s" : ""} in range
           </p>
         </div>
@@ -259,14 +267,14 @@ export default function AdminContactPage() {
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
           </div>
         ) : items.length === 0 ? (
-          <div className="py-16 text-center text-zinc-500">
+          <div className="py-16 text-center text-theme-muted">
             No submissions in this date range.
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-zinc-800 text-zinc-400">
+                <tr className="border-b border-theme text-theme-muted">
                   <th className="px-4 py-3 font-medium">Date</th>
                   <th className="px-4 py-3 font-medium">Name</th>
                   <th className="px-4 py-3 font-medium">Email</th>
@@ -277,11 +285,11 @@ export default function AdminContactPage() {
               <tbody>
                 {items.map((row) => (
                   <Fragment key={row.id}>
-                    <tr className="border-b border-zinc-800/80 transition-colors hover:bg-zinc-800/40">
-                      <td className="whitespace-nowrap px-4 py-3 text-zinc-300">
+                    <tr className="border-b border-theme transition-colors hover:bg-(--page-pattern-color)">
+                      <td className="whitespace-nowrap px-4 py-3 text-theme-heading">
                         {formatDate(row.createdAt)}
                       </td>
-                      <td className="px-4 py-3 text-white">{row.name}</td>
+                      <td className="px-4 py-3 text-theme-heading">{row.name}</td>
                       <td className="px-4 py-3">
                         <a
                           href={`mailto:${row.email}`}
@@ -290,7 +298,7 @@ export default function AdminContactPage() {
                           {row.email}
                         </a>
                       </td>
-                      <td className="max-w-[160px] truncate px-4 py-3 text-zinc-400">
+                      <td className="max-w-[160px] truncate px-4 py-3 text-theme-muted">
                         {row.subject || "—"}
                       </td>
                       <td className="px-2 py-3">
@@ -299,7 +307,7 @@ export default function AdminContactPage() {
                           onClick={() =>
                             setExpandedId(expandedId === row.id ? null : row.id)
                           }
-                          className="rounded p-1.5 text-zinc-500 hover:bg-zinc-700 hover:text-white"
+                          className="rounded p-1.5 text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
                           aria-label="Toggle message"
                         >
                           {expandedId === row.id ? "▼" : "▶"}
@@ -307,15 +315,15 @@ export default function AdminContactPage() {
                       </td>
                     </tr>
                     {expandedId === row.id && (
-                      <tr className="border-b border-zinc-800 bg-zinc-900/80">
+                      <tr className="border-b border-theme bg-theme-card">
                         <td colSpan={5} className="px-4 py-3">
-                          <div className="rounded-lg border border-zinc-700 bg-zinc-800/60 p-4">
+                          <div className="rounded-lg border border-theme bg-theme-section p-4">
                             {row.phone && (
-                              <p className="mb-2 text-xs text-zinc-500">
+                              <p className="mb-2 text-xs text-theme-muted">
                                 Phone: {row.phone}
                               </p>
                             )}
-                            <p className="whitespace-pre-wrap text-zinc-300">
+                            <p className="whitespace-pre-wrap text-theme-heading">
                               {row.message}
                             </p>
                           </div>

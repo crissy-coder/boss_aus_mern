@@ -34,14 +34,14 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-950 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-theme-section px-4">
       <div className="w-full max-w-sm">
-        <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-8 shadow-xl">
-          <h1 className="mb-2 text-2xl font-bold text-white">BOSS CMS</h1>
-          <p className="mb-6 text-sm text-zinc-400">Sign in to the admin panel</p>
+        <div className="rounded-2xl border border-theme bg-theme-card p-8 shadow-xl">
+          <h1 className="mb-2 text-2xl font-bold text-theme-heading">BOSS CMS</h1>
+          <p className="mb-6 text-sm text-theme-muted">Sign in to the admin panel</p>
           <form onSubmit={submit} className="space-y-4">
             <div>
-              <label htmlFor="password" className="mb-2 block text-sm font-medium text-zinc-300">
+              <label htmlFor="password" className="mb-2 block text-sm font-medium text-theme-muted">
                 Password
               </label>
               <input
@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-3 text-white placeholder-zinc-500 outline-none focus:border-brand focus:ring-1 focus:ring-brand"
+                className="w-full rounded-lg border border-theme bg-theme-card px-4 py-3 text-theme-heading placeholder:text-theme-muted outline-none focus:border-brand focus:ring-1 focus:ring-brand"
                 placeholder="Admin password"
                 required
               />
@@ -65,8 +65,8 @@ export default function AdminLoginPage() {
               {loading ? "Signing in..." : "Sign in"}
             </button>
           </form>
-          {/* <p className="mt-4 text-xs text-zinc-500">
-            On Vercel: set <code className="rounded bg-zinc-800 px-1">ADMIN_PASSWORD</code> in Project → Settings → Environment Variables.
+          {/* <p className="mt-4 text-xs text-theme-muted">
+            On Vercel: set <code className="rounded bg-theme-card px-1">ADMIN_PASSWORD</code> in Project → Settings → Environment Variables.
           </p> */}
         </div>
       </div>

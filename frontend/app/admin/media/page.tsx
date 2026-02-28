@@ -75,7 +75,7 @@ export default function AdminMediaPage() {
   return (
     <div>
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">Media</h1>
+        <h1 className="text-2xl font-bold text-theme-heading">Media</h1>
         <label className="cursor-pointer rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-light">
           <input
             type="file"
@@ -99,9 +99,9 @@ export default function AdminMediaPage() {
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand border-t-transparent" />
         </div>
       ) : files.length === 0 ? (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-12 text-center">
-          <p className="text-zinc-400">No images yet.</p>
-          <p className="mt-2 text-sm text-zinc-500">
+        <div className="rounded-xl border border-theme bg-theme-card p-12 text-center">
+          <p className="text-theme-muted">No images yet.</p>
+          <p className="mt-2 text-sm text-theme-muted">
             Upload images to use in pages. They are stored in public/uploads.
           </p>
         </div>
@@ -110,9 +110,9 @@ export default function AdminMediaPage() {
           {files.map((f) => (
             <div
               key={f.name}
-              className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50"
+              className="overflow-hidden rounded-xl border border-theme bg-theme-card"
             >
-              <div className="aspect-square bg-zinc-800">
+              <div className="aspect-square bg-theme-section">
                 <img
                   src={f.url}
                   alt={f.name}
@@ -120,15 +120,15 @@ export default function AdminMediaPage() {
                 />
               </div>
               <div className="p-3">
-                <p className="truncate text-sm font-medium text-white" title={f.name}>
+                <p className="truncate text-sm font-medium text-theme-heading" title={f.name}>
                   {f.name}
                 </p>
-                <p className="text-xs text-zinc-500">{formatSize(f.size)}</p>
+                <p className="text-xs text-theme-muted">{formatSize(f.size)}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={() => copyUrl(f.url)}
-                    className="rounded bg-zinc-800 px-2 py-1 text-xs text-zinc-400 hover:bg-zinc-700 hover:text-white"
+                    className="rounded bg-theme-card px-2 py-1 text-xs text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
                   >
                     Copy URL
                   </button>
@@ -136,7 +136,7 @@ export default function AdminMediaPage() {
                     href={f.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded bg-zinc-800 px-2 py-1 text-xs text-zinc-400 hover:bg-zinc-700 hover:text-white"
+                    className="rounded bg-theme-card px-2 py-1 text-xs text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
                   >
                     Open
                   </a>

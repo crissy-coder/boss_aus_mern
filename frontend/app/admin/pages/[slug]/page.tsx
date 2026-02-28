@@ -3,6 +3,8 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import BlockEditor from "@/components/admin/BlockEditor";
+import { contentToBlocks, blocksToContent } from "@/lib/blocks";
 
 type PageContent = {
   slug: string;
@@ -39,6 +41,8 @@ export default function AdminEditPagePage() {
   const [title, setTitle] = useState("");
   const [type, setType] = useState("custom");
   const [menuPlacement, setMenuPlacement] = useState("");
+  const [blocks, setBlocks] = useState<ReturnType<typeof contentToBlocks>>([]);
+  const [useJsonMode, setUseJsonMode] = useState(false);
   const [contentJson, setContentJson] = useState("{}");
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -56,6 +60,7 @@ export default function AdminEditPagePage() {
           setTitle(p.title);
           setType(p.type);
           setMenuPlacement(p.menuPlacement ?? "");
+          setBlocks(contentToBlocks((p.content ?? {}) as Record<string, unknown>));
           setContentJson(JSON.stringify(p.content, null, 2));
         })
         .catch(() => setPage(null))
@@ -68,12 +73,16 @@ export default function AdminEditPagePage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    let content = {};
-    try {
-      content = JSON.parse(contentJson);
-    } catch {
-      setError("Content must be valid JSON");
-      return;
+    let content: Record<string, unknown>;
+    if (useJsonMode) {
+      try {
+        content = JSON.parse(contentJson) as Record<string, unknown>;
+      } catch {
+        setError("Content must be valid JSON");
+        return;
+      }
+    } else {
+      content = blocksToContent(blocks);
     }
     setSaving(true);
     try {
@@ -126,7 +135,7 @@ export default function AdminEditPagePage() {
   if (!page && slug !== "new") {
     return (
       <div>
-        <p className="text-zinc-400">Page not found.</p>
+        <p className="text-theme-muted">Page not found.</p>
         <Link href="/admin/pages" className="mt-4 inline-block text-brand-light hover:underline">
           ← Back to pages
         </Link>
@@ -137,19 +146,19 @@ export default function AdminEditPagePage() {
   return (
     <div>
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">Edit page</h1>
+        <h1 className="text-2xl font-bold text-theme-heading">Edit page</h1>
         <div className="flex gap-2">
           <a
             href={`/${slug}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+            className="rounded-lg border border-theme px-4 py-2 text-sm text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
           >
             View on site
           </a>
           <Link
             href="/admin/pages"
-            className="rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-400 hover:bg-zinc-800 hover:text-white"
+            className="rounded-lg border border-theme px-4 py-2 text-sm text-theme-muted hover:bg-(--page-pattern-color) hover:text-theme-heading"
           >
             ← Back
           </Link>
@@ -158,29 +167,29 @@ export default function AdminEditPagePage() {
 
       <form onSubmit={submit} className="max-w-2xl space-y-6">
         <div>
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Slug</label>
+          <label className="mb-2 block text-sm font-medium text-theme-muted">Slug</label>
           <input
             type="text"
             value={slug}
             readOnly
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-800/50 px-4 py-2 text-zinc-500"
+            className="w-full rounded-lg border border-theme bg-theme-card px-4 py-2 text-theme-muted"
           />
         </div>
         <div>
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Title</label>
+          <label className="mb-2 block text-sm font-medium text-theme-muted">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-white"
+            className="w-full rounded-lg border border-theme bg-theme-card px-4 py-2 text-theme-heading"
           />
         </div>
         <div>
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Type</label>
+          <label className="mb-2 block text-sm font-medium text-theme-muted">Type</label>
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-white"
+            className="w-full rounded-lg border border-theme bg-theme-card px-4 py-2 text-theme-heading"
           >
             {TYPES.map((t) => (
               <option key={t.value} value={t.value}>
@@ -190,29 +199,52 @@ export default function AdminEditPagePage() {
           </select>
         </div>
         <div>
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Show in menu</label>
+          <label className="mb-2 block text-sm font-medium text-theme-muted">Show in menu</label>
           <select
             value={menuPlacement}
             onChange={(e) => setMenuPlacement(e.target.value)}
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 text-white"
+            className="w-full rounded-lg border border-theme bg-theme-card px-4 py-2 text-theme-heading"
           >
             {MENU_PLACEMENTS.map((p) => (
               <option key={p.value} value={p.value}>{p.label}</option>
             ))}
           </select>
-          <p className="mt-1 text-xs text-zinc-500">Where this page link appears: header (main nav or under Services/Global) or footer.</p>
+          <p className="mt-1 text-xs text-theme-muted">Where this page link appears: header (main nav or under Services/Global) or footer.</p>
         </div>
         <div>
-          <label className="mb-2 block text-sm font-medium text-zinc-300">Content (JSON)</label>
-          <textarea
-            value={contentJson}
-            onChange={(e) => setContentJson(e.target.value)}
-            rows={16}
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 font-mono text-sm text-white placeholder-zinc-500"
-          />
-          <p className="mt-1 text-xs text-zinc-500">
-            Optional row/column layouts: use <code className="rounded bg-zinc-800 px-1">rows</code> with <code className="rounded bg-zinc-800 px-1">layout</code> (e.g. &quot;6-6&quot;, &quot;8-4&quot;, &quot;4-4-4&quot;) and <code className="rounded bg-zinc-800 px-1">cells</code> (title, text, image). See docs.
-          </p>
+          <div className="mb-2 flex items-center justify-between">
+            <label className="text-sm font-medium text-theme-muted">Content</label>
+            <button
+              type="button"
+              onClick={() => {
+                if (!useJsonMode) {
+                  setContentJson(JSON.stringify(blocksToContent(blocks), null, 2));
+                  setUseJsonMode(true);
+                } else {
+                  try {
+                    const parsed = JSON.parse(contentJson || "{}") as Record<string, unknown>;
+                    setBlocks(contentToBlocks(parsed));
+                    setUseJsonMode(false);
+                  } catch {
+                    setError("Invalid JSON – fix before switching");
+                  }
+                }
+              }}
+              className="text-xs text-brand-light hover:underline"
+            >
+              {useJsonMode ? "Switch to block editor" : "Switch to JSON (advanced)"}
+            </button>
+          </div>
+          {useJsonMode ? (
+            <textarea
+              value={contentJson}
+              onChange={(e) => setContentJson(e.target.value)}
+              rows={16}
+              className="w-full rounded-lg border border-theme bg-theme-card px-4 py-2 font-mono text-sm text-theme-heading placeholder:text-theme-muted"
+            />
+          ) : (
+            <BlockEditor blocks={blocks} onChange={setBlocks} />
+          )}
         </div>
         {error && <p className="text-sm text-red-400">{error}</p>}
         <div className="flex flex-wrap items-center gap-4">
