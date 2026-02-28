@@ -47,6 +47,7 @@ export default function AdminLayout({
     { label: "Dashboard", href: "/admin" },
     { label: "Pages", href: "/admin/pages" },
     { label: "Media", href: "/admin/media" },
+    { label: "Contact", href: "/admin/contact" },
   ];
 
   const logout = () => {

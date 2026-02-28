@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 type PageMeta = { slug: string; title: string; type: string; updatedAt: string };
+type ContactCounts = { total: number; thisWeek: number; thisMonth: number };
 
 export default function AdminDashboardPage() {
   const [pages, setPages] = useState<PageMeta[]>([]);
   const [mediaCount, setMediaCount] = useState(0);
+  const [contactCounts, setContactCounts] = useState<ContactCounts | null>(null);
 
   useEffect(() => {
     fetch("/api/admin/pages")
@@ -18,13 +20,17 @@ export default function AdminDashboardPage() {
       .then((r) => r.json())
       .then((list: unknown[]) => setMediaCount(list.length))
       .catch(() => setMediaCount(0));
+    fetch("/api/admin/contact-submissions/stats")
+      .then((r) => r.json())
+      .then(setContactCounts)
+      .catch(() => setContactCounts(null));
   }, []);
 
   return (
     <div>
       <h1 className="mb-8 text-2xl font-bold text-white">Dashboard</h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700">
           <p className="text-sm font-medium text-zinc-400">Pages</p>
           <p className="mt-2 text-3xl font-bold text-white">{pages.length}</p>
           <Link
@@ -34,7 +40,7 @@ export default function AdminDashboardPage() {
             Manage pages →
           </Link>
         </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700">
           <p className="text-sm font-medium text-zinc-400">Media files</p>
           <p className="mt-2 text-3xl font-bold text-white">{mediaCount}</p>
           <Link
@@ -42,6 +48,19 @@ export default function AdminDashboardPage() {
             className="mt-4 inline-block text-sm font-medium text-brand-light hover:text-brand"
           >
             Manage media →
+          </Link>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700">
+          <p className="text-sm font-medium text-zinc-400">Contact submissions</p>
+          <p className="mt-2 text-3xl font-bold text-white">{contactCounts?.total ?? "—"}</p>
+          <p className="mt-1 text-xs text-zinc-500">
+            {contactCounts != null ? `${contactCounts.thisWeek} this week · ${contactCounts.thisMonth} this month` : ""}
+          </p>
+          <Link
+            href="/admin/contact"
+            className="mt-4 inline-block text-sm font-medium text-brand-light hover:text-brand"
+          >
+            View all →
           </Link>
         </div>
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
